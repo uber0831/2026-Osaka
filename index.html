@@ -7,92 +7,124 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: "PingFang TC", sans-serif; background-color: #FAF8F5; color: #4A3E3E; padding-top: 110px; }
-        .sticky-header { position: fixed; top: 0; left: 0; right: 0; background: white; z-index: 100; border-bottom: 1px solid #F1EAE0; }
-        .nav-scroll { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; scrollbar-width: none; }
-        .nav-scroll::-webkit-scrollbar { display: none; }
-        .day-link { background: #F4EFEA; color: #8D6E63; padding: 8px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; white-space: nowrap; }
-        .card { background: white; border-radius: 18px; padding: 20px; box-shadow: 0 2px 10px rgba(93, 64, 55, 0.03); margin-bottom: 20px; border: 1px solid #F1EAE0; }
-        .info-box { background: #F8F6F4; border-radius: 12px; padding: 12px; font-size: 13px; margin-bottom: 12px; }
+        body { font-family: "PingFang TC", sans-serif; background-color: #FAF8F5; color: #4A3E3E; }
+        .day-section { margin-bottom: 30px; }
+        .card { background: white; border-radius: 20px; padding: 22px; box-shadow: 0 2px 12px rgba(93, 64, 55, 0.04); border: 1px solid #F1EAE0; }
+        .info-box { background: #F8F6F4; border-radius: 12px; padding: 14px; font-size: 13px; margin-bottom: 12px; }
+        .date-badge { display: inline-block; background: #8D6E63; color: white; padding: 4px 12px; border-radius: 8px; font-size: 14px; font-weight: bold; margin-bottom: 15px; }
         .tag-inj { background: #FFEBEE; color: #C62828; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; }
         .tag-meal { background: #FFF3E0; color: #E65100; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; }
     </style>
 </head>
-<body>
+<body class="p-5 pt-10 pb-20">
 
-    <div class="sticky-header">
-        <div class="nav-scroll">
-            <a href="#day26" class="day-link">3/26 抵達</a>
-            <a href="#day27" class="day-link">3/27 梅田</a>
-            <a href="#day28" class="day-link">3/28 💉</a>
-            <a href="#day29" class="day-link">3/29 門真</a>
-            <a href="#day30" class="day-link">3/30 植入</a>
-            <a href="#day31" class="day-link">3/31 💉</a>
+    <header class="mb-8 pl-2">
+        <h1 class="text-3xl font-bold text-[#5D4037]">大阪．好孕行</h1>
+        <p class="text-sm text-[#A1887F] mt-1 tracking-widest italic">2026.03.26 - 03.31</p>
+    </header>
+
+    <section class="day-section">
+        <div class="date-badge">3/26 (四) 抵達</div>
+        <div class="card">
+            <div class="info-box border-l-4 border-blue-400">
+                <p class="font-bold text-blue-800 mb-1">✈️ 泰國獅航 SL396</p>
+                <p>12:30 抵達 KIX → 南海電鐵至市區</p>
+            </div>
+            <div class="info-box border-l-4 border-green-500">
+                <p class="font-bold text-green-800">🏠 住一新今宫1号店</p>
+                <p class="text-xs mt-1">大阪市浪速區惠美須西 3-14-13</p>
+            </div>
+            <ul class="text-sm space-y-3 mt-4 text-gray-600">
+                <li><i class="fa-solid fa-hotel mr-2 opacity-40"></i> Check-in 民宿</li>
+                <li><i class="fa-solid fa-cart-shopping mr-2 opacity-40"></i> Life 超市 / 唐吉訶德採買</li>
+                <li><i class="fa-solid fa-store mr-2 opacity-40"></i> Lawson / 7-11 零食巡禮</li>
+            </ul>
         </div>
-    </div>
+    </section>
 
-    <main class="px-5">
-        <section id="day26" class="pt-2">
-            <div class="card">
-                <h2 class="text-xl font-bold mb-4">3/26 (四) 抵達大阪</h2>
-                <div class="info-box border-l-4 border-blue-400">
-                    <p class="font-bold text-blue-800 underline underline-offset-4 mb-1">✈️ 航班：泰國獅航 SL396</p>
-                    <p>12:30 抵達 KIX → 搭乘南海電鐵至市區</p>
-                </div>
-                <div class="info-box border-l-4 border-green-500">
-                    <p class="font-bold text-green-800">🏠 住一新今宫1号店</p>
-                    <p class="text-xs mt-1 italic text-gray-500">大阪市浪速區惠美須西 3-14-13</p>
-                </div>
-                <ul class="text-sm space-y-3 mt-4 text-gray-600">
-                    <li><i class="fa-solid fa-cart-shopping mr-2"></i> Life 超市 / 唐吉訶德</li>
-                    <li><i class="fa-solid fa-store mr-2"></i> 超商巡禮 (Lawson / 7-11)</li>
-                </ul>
+    <section class="day-section">
+        <div class="date-badge">3/27 (五) 梅田</div>
+        <div class="card">
+            <div class="info-box border-l-4 border-orange-400">
+                <span class="tag-meal">已預約</span>
+                <p class="font-bold mt-1 text-orange-900 text-base">中午：敘敘苑午餐 (梅田店)</p>
             </div>
-        </section>
+            <ul class="text-sm space-y-3 mt-4 text-gray-600">
+                <li><i class="fa-solid fa-bag-shopping mr-2 opacity-40"></i> 下午：梅田區百貨逛逛</li>
+                <li><i class="fa-solid fa-users mr-2 opacity-40"></i> 晚上：與友人梅田晚餐</li>
+            </ul>
+        </div>
+    </section>
 
-        <section id="day27">
-            <div class="card">
-                <h2 class="text-xl font-bold mb-4">3/27 (五) 梅田約會</h2>
-                <div class="info-box border-l-4 border-orange-400">
-                    <span class="tag-meal">預約成功</span>
-                    <p class="font-bold mt-1 text-orange-900">中午：敘敘苑午餐 (梅田店)</p>
+    <section class="day-section">
+        <div class="date-badge">3/28 (六) 打針</div>
+        <div class="card border-l-4 border-red-300">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-bold">今日重點</h3>
+                <span class="tag-inj text-sm">💉 第一次打針</span>
+            </div>
+            <p class="text-sm text-gray-500 italic">✨ 目前尚無行程，建議休息、備妥體力。</p>
+        </div>
+    </section>
+
+    <section class="day-section">
+        <div class="date-badge">3/29 (日) 門真購物</div>
+        <div class="card">
+            <ul class="text-sm space-y-4 mb-6">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-cart-arrow-down text-blue-400"></i> 門真 Costco (好市多)</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-shirt text-orange-400"></i> 三井 Outlet Park</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-bowl-hot text-red-500 text-lg"></i> <b>一蘭拉麵</b></li>
+            </ul>
+            <button onclick="window.open('https://www.google.com/maps/search/?api=1&query=門真Lalaport')" class="w-full py-3 bg-[#A1887F] text-white rounded-xl text-sm font-bold shadow-sm">開啟門真地圖</button>
+        </div>
+    </section>
+
+    <section class="day-section">
+        <div class="date-badge" style="background: #D84315;">3/30 (一) 植入日</div>
+        <div class="card bg-[#FAF4F0] border-orange-100">
+            <div class="space-y-4 text-sm">
+                <div class="flex gap-3">
+                    <span class="text-xl">⛩️</span>
+                    <div><b>早上：住吉大社祈福</b><br><span class="text-xs text-gray-500 italic text-red-400">求子必拜，心情平和</span></div>
                 </div>
-                <ul class="text-sm space-y-3 mt-4 text-gray-600">
-                    <li><i class="fa-solid fa-bag-shopping mr-2"></i> 下午：梅田百貨區逛逛</li>
-                    <li><i class="fa-solid fa-users mr-2"></i> 晚上：與友人晚餐 (梅田)</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="day28">
-            <div class="card border-l-4 border-red-300">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-bold">3/28 (六)</h2>
-                    <span class="tag-inj">💉 第一次打針</span>
+                <div class="flex gap-3">
+                    <span class="text-xl">🏥</span>
+                    <div><b>14:00 診所植入</b><br><span class="text-xs text-gray-500 italic">一切順利，準時報到</span></div>
                 </div>
-                <p class="text-sm text-gray-500 italic font-medium">✨ 目前尚無行程，建議休息或附近輕鬆散步。</p>
+                <div class="flex gap-3">
+                    <span class="text-xl">🍟</span>
+                    <div><b>植入完必吃：麥當勞大薯</b><br><span class="text-xs text-gray-500">附近尋找麥當勞完成傳統</span></div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="day29">
-            <div class="card">
-                <h2 class="text-xl font-bold mb-4">3/29 (日) 門真購物</h2>
-                <ul class="text-sm space-y-4 mb-6">
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> 門真 Costco (好市多)</li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> 三井 Outlet Park</li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-bowl-hot text-red-500 mt-1"></i> 必吃：一蘭拉麵</li>
-                </ul>
-                <button onclick="window.open('https://maps.app.goo.gl/YfLidH1iU963Y9nQ8')" class="w-full py-3 bg-[#A1887F] text-white rounded-xl text-sm font-bold shadow-sm">開啟地圖：門真 Lalaport</button>
+    <section class="day-section pb-10">
+        <div class="date-badge">3/31 (二) 返程</div>
+        <div class="card border-l-4 border-red-300">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold">最後任務</h3>
+                <span class="tag-inj text-sm">💉 第二回打針</span>
             </div>
-        </section>
+            <p class="text-sm text-gray-600 mb-4 font-medium">早上完成打針 → 選一家店吃飽飽</p>
+            <div class="info-box border-l-4 border-blue-400 bg-blue-50/30">
+                <p class="font-bold text-blue-800 mb-1 italic">✈️ 星宇航空 JX823</p>
+                <p>15:10 KIX → 17:05 TPE</p>
+            </div>
+            <p class="text-xs text-red-500 font-bold text-center mt-3 underline decoration-double tracking-tighter">
+                ⚠️ 13:10 須抵達機場，請預留搭車時間
+            </p>
+        </div>
+    </section>
 
-        <section id="day30">
-            <div class="card bg-[#FAF4F0]">
-                <h2 class="text-xl font-bold mb-4 text-[#8D6E63]">3/30 (一) 植入重要日</h2>
-                <div class="space-y-4">
-                    <div class="p-3 bg-white rounded-xl text-sm border border-orange-100">
-                        <p class="font-bold text-orange-800 mb-1">⛩️ 早上：住吉大社祈福</p>
-                        <p class="text-xs text-gray-500 italic">求子祈願，保持心情平和。</p>
-                    </div>
-                    <div class="p-3 bg-white rounded-xl
+    <script>
+        // 打針當日警示
+        const now = new Date();
+        const m = now.getMonth() + 1;
+        const d = now.getDate();
+        if (m === 3 && (d === 28 || d === 31)) {
+            alert("💉 今日是重要的打針日！記得準備藥品，加油！");
+        }
+    </script>
+</body>
+</html>
