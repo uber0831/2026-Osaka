@@ -3,74 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kansai Journey Notes</title>
+    <title>2026 Osaka Trip</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 自定義字體與基礎樣式 */
         body { 
             font-family: "PingFang TC", "Heiti TC", "Noto Sans TC", sans-serif;
-            background-color: #FAF8F5; /* 柔和杏色背景 */
-            color: #5D4037; /* 深咖啡色文字，比純黑柔和 */
+            background-color: #FAF8F5;
+            color: #5D4037;
             -webkit-font-smoothing: antialiased;
         }
-        
-        /* 卡片樣式 */
         .note-card {
             background-color: #FFFFFF;
             border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(93, 64, 55, 0.04); /* 極淡的深色陰影 */
+            box-shadow: 0 2px 8px rgba(93, 64, 55, 0.04);
             border: 1px solid #F1EAE0;
+            margin-bottom: 20px;
         }
-
-        /* 自定義 Checkbox 樣式 */
-        input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            accent-color: #A1887F; /* 柔和的棕色 */
-            border: 1px solid #D7CCC8;
-            border-radius: 4px;
-        }
-
-        /* 導航按鈕樣式 */
-        .map-btn {
-            background-color: #A1887F; /* 柔和棕色 */
-            color: #FFFFFF;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 12px 20px;
+        .flight-info {
+            background-color: #F4F1ED;
             border-radius: 12px;
-            transition: background-color 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            padding: 12px;
+            font-size: 13px;
+        }
+        .map-btn {
+            background-color: #A1887F;
+            color: #FFFFFF;
+            padding: 10px;
+            border-radius: 10px;
             width: 100%;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 12px;
+            display: block;
         }
-        .map-btn:active {
-            background-color: #8D6E63;
+        #injection-alert {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
         }
-
-        /* 移除標籤頁背景，保持極簡 */
-        .active-tab {
-            color: #A1887F !important;
-            font-weight: 600;
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body class="pb-28">
+<body class="pb-24">
 
-    <div class="p-6 pt-10 border-b border-[#F1EAE0]">
-        <h1 class="text-2xl font-medium tracking-tight">旅途記事</h1>
-        <p class="text-sm text-[#8D6E63] mt-1">關西．2026</p>
+    <div id="injection-alert" class="m-5 p-4 bg-red-50 border border-red-200 rounded-2xl">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl">💉</span>
+            <div>
+                <h3 class="font-bold text-red-800">打針提醒</h3>
+                <p class="text-sm text-red-600 font-medium">今天是重要的打針日，請記得備妥藥品！</p>
+            </div>
+        </div>
     </div>
 
-    <div class="p-5 space-y-6">
+    <div class="p-6 pt-10 border-b border-[#F1EAE0]">
+        <h1 class="text-2xl font-medium tracking-tight text-[#5D4037]">大阪．好孕之旅</h1>
+        <p id="current-status" class="text-sm text-[#A1887F] mt-1 italic italic">載入行程中...</p>
+    </div>
+
+    <div class="p-5">
         
-        <div class="p-4 bg-white border border-[#F1EAE0] rounded-xl text-sm text-[#8D6E63] italic">
-            「放慢腳步，保持心情愉悅，一切都會順利的。」
+        <div class="note-card p-6">
+            <h2 class="text-lg font-semibold mb-3">3/26 (四) 抵達大阪</h2>
+            <div class="flight-info mb-4">
+                <p class="font-medium text-[#8D6E63]">✈️ 泰國獅航 SL396</p>
+                <p>09:00 TPE → 12:30 KIX (T1)</p>
+            </div>
+            <div class="space-y-2 text-sm text-[#795548]">
+                <p>● 預計 14:00-15:00 抵達市區</p>
+                <p>● 阿倍野周邊散步 (Montbell / 一蘭)</p>
+                <p>● Life 超市採買水果補給</p>
+            </div>
+        </div>
+
+        <div class="note-card p-6 border-l-4 border-red-200">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-semibold">3/28 (六)</h2>
+                <span class="text-xs bg-red-50 text-red-600 px-2 py-1 rounded">💉 第一回打針</span>
+            </div>
+            <p class="text-sm text-[#795548]">當日打針行程，建議維持心情平穩，減少劇烈運動。</p>
+        </div>
+
+        <div class="note-card p-6 border-l-4 border-[#A1887F]">
+            <h2 class="text-lg font-semibold mb-3">3/29 (日) 門真購物</h2>
+            <div class="space-y-2 text-sm text-[#795548]">
+                <label class="flex items-center gap-3"><input type="checkbox"> Costco 門真店</label>
+                <label class="flex items-center gap-3"><input type="checkbox"> Mitsui Outlet / Lalaport</label>
+                <label class="flex items-center gap-3"><input type="checkbox"> coca / Loft / Muji</label>
+            </div>
+            <a href="https://maps.google.com/?q=Costco+Kadoma" class="map-btn">導航至門真購物中心</a>
         </div>
 
         <div class="note-card p-6">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <h2 class="text-lg font-semibold text-[#5D4037]">28 (五)</h2>
-                    <p class="text-xs text-[#A1887F] font-medium tracking-wide mt-1">重要
+            <h2 class="text-lg font-semibold mb-3">3/30 (一) 植入 & 祈福</h2>
+            <div class="space-y-3 text-sm text-[#7955
