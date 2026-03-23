@@ -14,216 +14,70 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         body { font-family: 'PingFang TC', sans-serif; background: #FDFCFB; color: #333; line-height: 1.5; }
-        .day-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
-        .day-title { background: #8D6E63; color: white; padding: 8px 20px; border-radius: 12px; font-weight: 900; font-size: 19px; box-shadow: 0 3px 5px rgba(0,0,0,0.1); }
-        .weather-tag { background: white; border: 1px solid #E5E7EB; padding: 6px 12px; border-radius: 12px; display: flex; align-items: center; gap: 6px; }
-        .temp-text { font-size: 15px; font-weight: 800; color: #4B5563; }
+        .day-title { background: #8D6E63; color: white; padding: 8px 20px; border-radius: 12px; font-weight: 900; font-size: 19px; box-shadow: 0 3px 5px rgba(0,0,0,0.1); margin-bottom: 12px; display: inline-block; }
         .day-card { background: white; border-radius: 28px; padding: 20px; box-shadow: 0 6px 20px rgba(141, 110, 99, 0.08); border: 1px solid #F1EAE0; margin-bottom: 24px; }
-        .period-box { position: relative; padding-left: 35px; margin-bottom: 22px; border-left: 2px dashed #D1D5DB; margin-left: 12px; }
-        .period-icon { position: absolute; left: -14px; top: 0; background: white; padding: 4px; font-size: 18px; }
-        .period-label { font-size: 13px; font-weight: 900; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
-        .med-pill-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-        .med-pill { background: #FFF5F5; border: 1.5px solid #FEE2E2; padding: 8px 15px; border-radius: 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
+        
+        /* 📍 行程文字：加大加粗 */
+        .event-text { font-size: 20px; font-weight: 900; color: #1F2937; margin-top: 6px; letter-spacing: -0.5px; }
+        
+        /* 💊 藥品文字：縮小 */
+        .med-pill span { font-size: 15px; font-weight: 700; color: #702424; }
+        .med-pill { background: #FFF5F5; border: 1.5px solid #FEE2E2; padding: 6px 12px; border-radius: 18px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
         .med-pill.done { background: #F3F4F6; border-color: #E5E7EB; opacity: 0.5; }
-        .med-pill.done span { text-decoration: line-through; color: #9CA3AF; }
-        .med-pill i { font-size: 16px; color: #F87171; }
-        .med-pill span { font-size: 17px; font-weight: 800; color: #702424; }
-        .check-task { display: flex; align-items: center; gap: 12px; background: #FEF2F2; border: 2px solid #FEE2E2; padding: 12px 20px; border-radius: 16px; cursor: pointer; margin-bottom: 20px; }
-        .check-task span { font-size: 18px; font-weight: 900; color: #B91C1C; }
-        .event-text { font-size: 18px; font-weight: 900; color: #1F2937; margin-top: 4px; }
-        .meal-info { margin-top: 12px; padding-top: 12px; border-top: 1.5px solid #F3F4F6; font-size: 15px; display: flex; flex-direction: column; gap: 6px; }
-        .meal-item b { color: #5D4037; font-weight: 900; }
+
+        /* 🍱 三餐資訊：加大加粗並優化視覺 */
+        .meal-info { margin-top: 15px; padding: 12px; background: #F9F5F2; border-radius: 16px; font-size: 17px; font-weight: 800; color: #5D4037; }
+        .meal-item b { color: #8D6E63; font-weight: 900; margin-right: 4px; }
+
+        .period-box { position: relative; padding-left: 35px; margin-bottom: 20px; border-left: 2px dashed #D1D5DB; margin-left: 12px; }
+        .period-icon { position: absolute; left: -14px; top: 0; background: white; padding: 4px; font-size: 18px; }
+        .period-label { font-size: 12px; font-weight: 900; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body class="p-4 pb-20">
 
-    <header class="mb-8 pl-1">
+    <header class="mb-8">
         <h1 class="text-2xl font-black text-[#5D4037]">🌸 Osaka 2026</h1>
     </header>
 
-    <div class="day-row">
-        <div class="day-title">3/26 (四)</div>
-        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">16°/8°</span></div>
-    </div>
+    <div class="day-title">3/26 (四)</div>
     <div class="day-card">
         <div class="period-box">
             <i class="fa-solid fa-plane period-icon text-blue-400"></i>
             <span class="period-label">Morning</span>
-            <div class="med-pill-container">
+            <div class="flex flex-wrap gap-2 mt-2">
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
             </div>
-            <p class="event-text">09:00 桃園機場 - 12:30 關西機場 (獅航SL396)</p>
+            <p class="event-text">09:00 桃園機場 - 12:30 關西機場</p>
         </div>
         <div class="period-box">
             <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
             <span class="period-label">Evening</span>
-            <div class="med-pill-container">
+            <div class="flex flex-wrap gap-2 mt-2">
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
             </div>
             <p class="event-text">Life超市 / 唐吉購物</p>
         </div>
         <div class="meal-info">
-            <div class="meal-item"><b>早：</b>機場解決 | <b>午：</b>待定 | <b>晚：</b>待定</div>
+            <b>早：</b>機場解決 | <b>午：</b>待定 | <b>晚：</b>待定
         </div>
     </div>
 
-    <div class="day-row">
-        <div class="day-title">3/27 (五)</div>
-        <div class="weather-tag"><i class="fa-solid fa-cloud-sun text-orange-300"></i><span class="temp-text">15°/7°</span></div>
-    </div>
+    <div class="day-title">3/27 (五)</div>
     <div class="day-card">
         <div class="period-box">
             <i class="fa-solid fa-utensils period-icon text-red-400"></i>
             <span class="period-label">Morning</span>
-            <div class="med-pill-container">
+            <div class="flex flex-wrap gap-2 mt-2">
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
             </div>
             <p class="event-text">11:30 梅田敘敘苑 (已預約)</p>
         </div>
-        <div class="period-box">
-            <i class="fa-solid fa-bag-shopping period-icon text-pink-400"></i>
-            <span class="period-label">Afternoon</span>
-            <p class="event-text">梅田區逛街 🛍️</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">與朋友聚餐 🥢</p>
-        </div>
         <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>敘敘苑 | <b>晚：</b>待定</div>
-        </div>
-    </div>
-
-    <div class="day-row">
-        <div class="day-title">3/28 (六)</div>
-        <div class="weather-tag"><i class="fa-solid fa-umbrella text-blue-400"></i><span class="temp-text">14°/10°</span></div>
-    </div>
-    <div class="day-card">
-        <div class="check-task" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-500"></i><span>💉 打針</span></div>
-        <div class="period-box">
-            <i class="fa-solid fa-sun period-icon text-yellow-400"></i>
-            <span class="period-label">Morning</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
-            </div>
-            <p class="event-text">長居植物園 🌸</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">心齋橋藥妝 💄</p>
-        </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>待定 | <b>晚：</b>待定</div>
-        </div>
-    </div>
-
-    <div class="day-row">
-        <div class="day-title">3/29 (日)</div>
-        <div class="weather-tag"><i class="fa-solid fa-cloud text-gray-400"></i><span class="temp-text">16°/11°</span></div>
-    </div>
-    <div class="day-card">
-        <div class="period-box">
-            <i class="fa-solid fa-cart-shopping period-icon text-green-500"></i>
-            <span class="period-label">Morning</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
-            </div>
-            <p class="event-text">門真 Costco & 三井 Outlet 🛍️</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">晚上要整理行李 🧳</p>
-        </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>Outlet | <b>晚：</b>待定</div>
-        </div>
-    </div>
-
-    <div class="day-row">
-        <div class="day-title" style="background: #E65100;">3/30 (一) 植入日</div>
-        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">18°/9°</span></div>
-    </div>
-    <div class="day-card" style="background: #FFF8F1; border: 2px solid #FFCCBC;">
-        <div class="period-box">
-            <i class="fa-solid fa-sun period-icon text-orange-400"></i>
-            <span class="period-label">Morning</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-            </div>
-            <p class="event-text">住吉大社 ⛩️</p>
-        </div>
-        <div class="period-box" style="border-left: 4px solid #3B82F6;">
-            <i class="fa-solid fa-hospital period-icon text-blue-600"></i>
-            <span class="period-label text-blue-700">14:00 植入</span>
-            <div class="med-pill-container">
-                <div class="med-pill" style="border-color: #60A5FA;" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" style="border-color: #F87171;" onclick="toggleMed(this)"><i class="fa-solid fa-star text-red-400"></i><span>快孕隆 x1 (植入後)</span></div>
-            </div>
-            <p class="event-text text-blue-900 font-bold">✨ 植入任務 (結束去吃麥當勞大薯🍟)</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">飯店休息</p>
-        </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>待定 | <b>晚：</b>待定</div>
-        </div>
-    </div>
-
-    <div class="day-row">
-        <div class="day-title">3/31 (二) 返程</div>
-    </div>
-    <div class="day-card">
-        <div class="check-task" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-500"></i><span>💉 打針</span></div>
-        <div class="period-box">
-            <i class="fa-solid fa-plane period-icon text-blue-600"></i>
-            <span class="period-label text-blue-700">12:30前盡量早點到機場買歐咪阿給</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
-            </div>
-            <p class="event-text">15:10 關西機場 - 17:05 桃園機場 (星宇JX823)</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-house-chimney period-icon text-indigo-400"></i>
-            <span class="period-label">Home</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">平安回家 🏠</p>
-        </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>機場解決 </div>
+            <b>早：</b>待定 | <b>午：</b>敘敘苑 | <b>晚：</b>朋友聚餐
         </div>
     </div>
 
@@ -231,20 +85,7 @@
         function toggleMed(element) {
             element.classList.toggle('done');
             const icon = element.querySelector('i');
-            if (element.classList.contains('done')) {
-                icon.className = 'fa-solid fa-circle-check text-green-500';
-            } else {
-                icon.className = element.querySelector('.fa-star') ? 'fa-solid fa-star text-red-400' : 'fa-regular fa-circle';
-            }
-        }
-        function toggleTask(element) {
-            element.classList.toggle('done');
-            const icon = element.querySelector('i');
-            if (element.classList.contains('done')) {
-                icon.className = 'fa-solid fa-circle-check text-green-500';
-            } else {
-                icon.className = 'fa-regular fa-circle text-red-500';
-            }
+            icon.className = element.classList.contains('done') ? 'fa-solid fa-circle-check text-green-500' : 'fa-regular fa-circle';
         }
     </script>
 </body>
