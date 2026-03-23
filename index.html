@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Osaka 2026</title>
+
+    <link rel="apple-touch-icon" href="https://files.oaiusercontent.com/file-asYqS6hRscY6Z1N1R6XGvY?se=2026-03-24T06%3A54%3A46Z&sp=r&sv=24.8.30&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Db699341b-4d9e-4a6c-9477-987823f5451e.webp&sig=P7nO9Vf89V6S7V8V6S7V8V6S7V8V6S7V8V6S7V8V6S4%3D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="大阪行程">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -31,8 +37,9 @@
 </head>
 <body class="p-4 pb-20">
 
-    <header class="mb-8 pl-1">
+    <header class="mb-8 pl-1 flex justify-between items-center">
         <h1 class="text-2xl font-black text-[#5D4037]">🌸 Osaka 2026</h1>
+        <a href="https://www.google.com/search?q=osaka+weather" target="_blank" class="text-xs bg-blue-50 text-blue-600 px-3 py-2 rounded-full font-bold shadow-sm">即時天氣查詢</a>
     </header>
 
     <div class="day-row"><div class="day-title">3/26 (四)</div><div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">16°/8°</span></div></div>
@@ -42,7 +49,7 @@
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
             </div>
-            <p class="event-text">09:00 桃園機場 - 12:30 關西機場 (獅航 SL396)</p>
+            <p class="event-text">09:00 桃園出發 (SL396)</p>
         </div>
         <div class="period-box"><i class="fa-solid fa-moon period-icon text-indigo-400"></i><span class="period-label">Evening</span>
             <div class="med-pill-container">
@@ -51,9 +58,7 @@
             </div>
             <p class="event-text">Life超市 / 唐吉購物</p>
         </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>機場解決 | <b>午：</b>飛機餐 | <b>晚：</b>待定</div>
-        </div>
+        <div class="meal-info"><div class="meal-item"><b>早：</b>待定 | <b>午：</b>飛機餐 | <b>晚：</b>待定</div></div>
     </div>
 
     <div class="day-row"><div class="day-title">3/27 (五)</div><div class="weather-tag"><i class="fa-solid fa-cloud-sun text-orange-300"></i><span class="temp-text">15°/7°</span></div></div>
@@ -75,9 +80,7 @@
             </div>
             <p class="event-text">與朋友聚餐 🥢</p>
         </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>敘敘苑 | <b>晚：</b>待定</div>
-        </div>
+        <div class="meal-info"><div class="meal-item"><b>早：</b>待定 | <b>午：</b>敘敘苑 | <b>晚：</b>朋友聚餐</div></div>
     </div>
 
     <div class="day-row"><div class="day-title">3/28 (六)</div><div class="weather-tag"><i class="fa-solid fa-umbrella text-blue-400"></i><span class="temp-text">14°/10°</span></div></div>
@@ -97,9 +100,7 @@
             </div>
             <p class="event-text">心齋橋藥妝 💄</p>
         </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>待定 | <b>晚：</b>待定</div>
-        </div>
+        <div class="meal-info"><div class="meal-item"><b>早：</b>待定 | <b>午：</b>待定 | <b>晚：</b>待定</div></div>
     </div>
 
     <div class="day-row"><div class="day-title">3/29 (日)</div><div class="weather-tag"><i class="fa-solid fa-cloud text-gray-400"></i><span class="temp-text">16°/11°</span></div></div>
@@ -118,9 +119,7 @@
             </div>
             <p class="event-text">晚上要整理行李 🧳</p>
         </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>Outlet | <b>晚：</b>待定</div>
-        </div>
+        <div class="meal-info"><div class="meal-item"><b>早：</b>待定 | <b>午：</b>Outlet | <b>晚：</b>待定</div></div>
     </div>
 
     <div class="day-row"><div class="day-title" style="background: #E65100;">3/30 (一) 植入日</div><div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">18°/9°</span></div></div>
@@ -135,9 +134,9 @@
         <div class="period-box" style="border-left: 4px solid #3B82F6;"><i class="fa-solid fa-hospital period-icon text-blue-600"></i><span class="period-label text-blue-700">14:00 診所</span>
             <div class="med-pill-container">
                 <div class="med-pill" style="border-color: #60A5FA;" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" style="border-color: #F87171;" onclick="toggleMed(this)"><i class="fa-solid fa-star"></i><span>快孕隆 x1 (植入後)</span></div>
+                <div class="med-pill" style="border-color: #F87171;" onclick="toggleMed(this)"><i class="fa-solid fa-star text-red-400"></i><span>快孕隆 x1 (植入後)</span></div>
             </div>
-            <p class="event-text text-blue-900">✨ 植入任務 ✨(結束後去吃麥當勞大薯🍟)</p>
+            <p class="event-text text-blue-900 font-bold">✨ 植入任務 (結束去吃麥當勞大薯🍟)</p>
         </div>
         <div class="period-box"><i class="fa-solid fa-moon period-icon text-indigo-400"></i><span class="period-label">Evening</span>
             <div class="med-pill-container">
@@ -147,21 +146,19 @@
             </div>
             <p class="event-text">飯店休息</p>
         </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>待定 | <b>晚：</b>待定</div>
-        </div>
+        <div class="meal-info"><div class="meal-item"><b>早：</b>待定 | <b>午：</b>待定 | <b>晚：</b>麥當勞大薯🍟</div></div>
     </div>
 
     <div class="day-row"><div class="day-title">3/31 (二) 返程</div></div>
     <div class="day-card">
         <div class="check-task" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-500"></i><span>💉 打針</span></div>
-        <div class="period-box"><i class="fa-solid fa-plane period-icon text-blue-600"></i><span class="period-label text-blue-700">12:10 盡量早點到機場買歐咪阿給</span>
+        <div class="period-box"><i class="fa-solid fa-plane period-icon text-blue-600"></i><span class="period-label text-blue-700">12:10 到機場 (星宇 JX823)</span>
             <div class="med-pill-container">
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
             </div>
-            <p class="event-text"> 15:10 關西機場 - 17:05 桃園機場 (星宇 JX823)</p>
+            <p class="event-text">機場買歐咪阿給 / 17:05 到桃園</p>
         </div>
         <div class="period-box"><i class="fa-solid fa-house-chimney period-icon text-indigo-400"></i><span class="period-label">Home</span>
             <div class="med-pill-container">
@@ -171,9 +168,7 @@
             </div>
             <p class="event-text">平安回家 🏠</p>
         </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早：</b>待定 | <b>午：</b>機場解決</div>
-        </div>
+        <div class="meal-info"><div class="meal-item"><b>早：</b>便利店 | <b>午：</b>機場 | <b>晚：</b>家裡</div></div>
     </div>
 
     <script>
@@ -181,7 +176,7 @@
             element.classList.toggle('done');
             const icon = element.querySelector('i');
             if (element.classList.contains('done')) { icon.className = 'fa-solid fa-circle-check text-green-500'; } 
-            else { icon.className = element.querySelector('.fa-star') ? 'fa-solid fa-star' : 'fa-regular fa-circle'; }
+            else { icon.className = element.querySelector('.fa-star') ? 'fa-solid fa-star text-red-400' : 'fa-regular fa-circle'; }
         }
         function toggleTask(element) {
             element.classList.toggle('done');
