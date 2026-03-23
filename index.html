@@ -10,6 +10,8 @@
         body { font-family: 'PingFang TC', sans-serif; background: #FDFCFB; color: #333; }
         .day-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; padding-left: 4px; }
         .day-title { background: #8D6E63; color: white; padding: 8px 18px; border-radius: 12px; font-weight: bold; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .weather-tag { background: white; border: 1px solid #E5E7EB; padding: 6px 12px; border-radius: 12px; display: flex; align-items: center; gap: 6px; }
+        .temp-text { font-size: 13px; font-weight: 800; color: #4B5563; }
         .day-card { background: white; border-radius: 28px; padding: 22px; box-shadow: 0 4px 15px rgba(141, 110, 99, 0.08); border: 1px solid #F1EAE0; margin-bottom: 24px; }
         .period-box { position: relative; padding-left: 30px; margin-bottom: 20px; border-left: 2px dashed #D1D5DB; margin-left: 10px; }
         .period-icon { position: absolute; left: -12px; top: 0; background: white; padding: 4px; font-size: 14px; }
@@ -28,10 +30,13 @@
 <body class="p-5 pb-24">
 
     <header class="mb-8 pl-1">
-        <h1 class="text-2xl font-black text-[#5D4037]">2026 Osaka </h1>
+        <h1 class="text-2xl font-black text-[#5D4037]">2026 Osaka Trip</h1>
     </header>
 
-    <div class="day-row"><div class="day-title">3/26 (四)</div></div>
+    <div class="day-row">
+        <div class="day-title">3/26 (四)</div>
+        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">16° / 8°</span></div>
+    </div>
     <div class="day-card">
         <div class="period-box">
             <i class="fa-solid fa-plane period-icon text-blue-400"></i>
@@ -40,7 +45,7 @@
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
             </div>
-            <p class="event-text">09:00 桃園出發 (獅航SL396)</p>
+            <p class="event-text">09:00 桃園出發 (SL396)</p>
         </div>
         <div class="period-box">
             <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
@@ -53,7 +58,10 @@
         </div>
     </div>
 
-    <div class="day-row"><div class="day-title">3/27 (五)</div></div>
+    <div class="day-row">
+        <div class="day-title">3/27 (五)</div>
+        <div class="weather-tag"><i class="fa-solid fa-cloud-sun text-orange-300"></i><span class="temp-text">15° / 7°</span></div>
+    </div>
     <div class="day-card">
         <div class="period-box">
             <i class="fa-solid fa-utensils period-icon text-red-400"></i>
@@ -62,7 +70,12 @@
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
             </div>
-            <p class="event-text">11:30 梅田敘敘苑 (已預約) </p>
+            <p class="event-text">11:30 梅田敘敘苑午餐 (已預約)</p>
+        </div>
+        <div class="period-box">
+            <i class="fa-solid fa-bag-shopping period-icon text-pink-400"></i>
+            <span class="period-label">Afternoon</span>
+            <p class="event-text">梅田區逛街 (百貨公司/Loft/大丸) 🛍️</p>
         </div>
         <div class="period-box">
             <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
@@ -71,11 +84,14 @@
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
             </div>
-            <p class="event-text">與友人聚餐 </p>
+            <p class="event-text">與朋友聚餐</p>
         </div>
     </div>
 
-    <div class="day-row"><div class="day-title">3/28 (六)</div></div>
+    <div class="day-row">
+        <div class="day-title">3/28 (六)</div>
+        <div class="weather-tag"><i class="fa-solid fa-umbrella text-blue-400"></i><span class="temp-text">14° / 10°</span></div>
+    </div>
     <div class="day-card">
         <div class="check-task" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-500"></i><span>打針 💉</span></div>
         <div class="period-box">
@@ -98,7 +114,10 @@
         </div>
     </div>
 
-    <div class="day-row"><div class="day-title">3/29 (日)</div></div>
+    <div class="day-row">
+        <div class="day-title">3/29 (日)</div>
+        <div class="weather-tag"><i class="fa-solid fa-cloud text-gray-400"></i><span class="temp-text">16° / 11°</span></div>
+    </div>
     <div class="day-card">
         <div class="period-box">
             <i class="fa-solid fa-cart-shopping period-icon text-green-500"></i>
@@ -107,7 +126,7 @@
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
             </div>
-            <p class="event-text">門真 Costco & 三井Outlet 🛍️</p>
+            <p class="event-text">門真 Costco & 三井 Outlet 🛍️</p>
         </div>
         <div class="period-box">
             <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
@@ -120,7 +139,10 @@
         </div>
     </div>
 
-    <div class="day-row"><div class="day-title" style="background: #E65100;">3/30 (一) 植入日</div></div>
+    <div class="day-row">
+        <div class="day-title" style="background: #E65100;">3/30 (一) 植入日</div>
+        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">18° / 9°</span></div>
+    </div>
     <div class="day-card bg-orange-50/20 border-orange-100">
         <div class="period-box">
             <i class="fa-solid fa-sun period-icon text-orange-400"></i>
@@ -129,7 +151,7 @@
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
             </div>
-            <p class="event-text">住吉大社 ⛩️</p>
+            <p class="event-text underline decoration-orange-200">住吉大社 ⛩️</p>
         </div>
         <div class="period-box border-l-2 border-blue-200">
             <i class="fa-solid fa-hospital period-icon text-blue-600"></i>
@@ -138,7 +160,7 @@
                 <div class="med-pill" style="border-color: #93C5FD; background: #EFF6FF;" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
                 <div class="med-pill" style="border-color: #F87171;" onclick="toggleMed(this)"><i class="fa-solid fa-star"></i><span>快孕隆 x1 (植入後)</span></div>
             </div>
-            <p class="event-text text-blue-800 font-black">植入 ✨ (結束後去吃大薯🍟)</p>
+            <p class="event-text text-blue-800 font-black">植入 ✨ (結束吃大薯🍟)</p>
         </div>
         <div class="period-box">
             <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
@@ -152,7 +174,9 @@
         </div>
     </div>
 
-    <div class="day-row"><div class="day-title">3/31 (二) 返程</div></div>
+    <div class="day-row">
+        <div class="day-title">3/31 (二) 返程</div>
+    </div>
     <div class="day-card">
         <div class="period-box">
             <i class="fa-solid fa-door-open period-icon text-red-500"></i>
