@@ -15,12 +15,10 @@
         
         .day-card { background: white; border-radius: 24px; padding: 18px; box-shadow: 0 4px 15px rgba(141, 110, 99, 0.05); border: 1px solid #F1EAE0; margin-bottom: 20px; }
         
-        /* 融合式時段區塊 */
         .period-box { position: relative; padding-left: 24px; margin-bottom: 15px; border-left: 2px dashed #E5E7EB; margin-left: 8px; }
         .period-icon { position: absolute; left: -10px; top: 0; background: white; padding: 2px; font-size: 12px; }
         .period-label { font-size: 10px; font-weight: bold; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; display: block; }
         
-        /* 嵌入式藥物膠囊 */
         .med-pill-container { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
         .med-pill { background: #FFF5F5; border: 1px solid #FEE2E2; padding: 3px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px; cursor: pointer; transition: all 0.2s; }
         .med-pill.done { background: #F3F4F6; border-color: #E5E7EB; opacity: 0.5; }
@@ -29,9 +27,6 @@
         .med-pill.done i { color: #10B981; }
         .med-pill span { font-size: 10px; font-weight: 700; color: #702424; }
 
-        .meal-info { font-size: 12px; font-weight: 600; color: #8D6E63; margin-top: 2px; display: block; }
-
-        /* 打針標籤：貼合內容長度 */
         .check-task { 
             display: inline-flex; 
             align-items: center; 
@@ -48,7 +43,6 @@
         .check-task.done { background: #F0FDF4; border-color: #DCF6E3; opacity: 0.6; }
         .check-task.done span { text-decoration: line-through; color: #9CA3AF; }
 
-        /* 住宿卡片樣式 */
         .hotel-card { background: #F8F9FA; border-left: 4px solid #8D6E63; padding: 10px; border-radius: 12px; margin-top: 8px; }
     </style>
 </head>
@@ -67,7 +61,6 @@
             <i class="fa-solid fa-plane period-icon text-blue-400"></i>
             <span class="period-label">Morning</span>
             <p class="text-sm font-bold">09:00 桃園出發 (SL396)</p>
-            <span class="meal-info">早餐：機場解決</span>
             <div class="med-pill-container">
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
@@ -76,17 +69,15 @@
         <div class="period-box">
             <i class="fa-solid fa-hotel period-icon text-orange-400"></i>
             <span class="period-label">Afternoon</span>
-            <p class="text-sm font-bold">住一新今宮 1 號店 Check-in</p>
+            <p class="text-sm font-bold italic">Check-in @ 住一新今宮 1 號店</p>
             <div class="hotel-card">
-                <p class="text-[11px] font-bold text-gray-500 italic">ACCOMMODATION</p>
                 <p class="text-xs font-bold text-[#5D4037]">16:00 後入住</p>
-                <p class="text-[11px] text-gray-600">住一新今宮 1 號店</p>
             </div>
         </div>
         <div class="period-box">
             <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
             <span class="period-label">Evening</span>
-            <p class="text-sm font-bold">Life 超市 / 唐吉</p>
+            <p class="text-sm font-bold text-gray-700">Life 超市 / 唐吉購物</p>
             <div class="med-pill-container">
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
@@ -106,7 +97,7 @@
         <div class="period-box">
             <i class="fa-solid fa-sun period-icon text-yellow-400"></i>
             <span class="period-label">Morning</span>
-            <p class="text-sm font-bold">長居植物園 🌸</p>
+            <p class="text-sm font-bold text-gray-700">長居植物園 🌸</p>
             <div class="med-pill-container">
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
@@ -129,13 +120,33 @@
     </div>
     <div class="day-card bg-orange-50/20 border-orange-100">
         <div class="period-box">
+            <i class="fa-solid fa-sun period-icon text-orange-400"></i>
+            <span class="period-label text-orange-600">Morning</span>
+            <p class="text-sm font-bold text-gray-700 underline decoration-orange-200">住吉大社祈福 ⛩️</p>
+            <div class="med-pill-container">
+                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎龍 x1</span></div>
+            </div>
+        </div>
+        
+        <div class="period-box border-l-2 border-blue-200">
             <i class="fa-solid fa-hospital period-icon text-blue-600"></i>
-            <span class="period-label text-blue-600">14:00 植入</span>
-            <p class="text-sm font-bold text-blue-800">植入任務</p>
-            <p class="text-[11px] text-yellow-700 mt-1 font-bold">🍟 結束吃大薯</p>
+            <span class="period-label text-blue-600">14:00 診所</span>
+            <p class="text-sm font-bold text-blue-800 italic">植入任務 ✨ (結束吃大薯🍟)</p>
             <div class="med-pill-container">
                 <div class="med-pill" style="border-color: #93C5FD; background: #EFF6FF;" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎龍 x1 (飯後)</span></div>
                 <div class="med-pill" style="border-color: #F87171;" onclick="toggleMed(this)"><i class="fa-solid fa-star"></i><span>快孕隆 x1 (植入後)</span></div>
+            </div>
+        </div>
+
+        <div class="period-box">
+            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
+            <span class="period-label">Evening</span>
+            <p class="text-sm font-bold text-gray-700">飯店休息 (晚餐待定)</p>
+            <div class="med-pill-container">
+                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎龍 x1</span></div>
+                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
             </div>
         </div>
     </div>
@@ -146,28 +157,21 @@
     <div class="day-card">
         <div class="period-box">
             <i class="fa-solid fa-door-open period-icon text-red-500"></i>
-            <span class="period-label text-red-500">Important</span>
-            <p class="text-sm font-bold text-red-700">10:00 前 Check-out</p>
+            <span class="period-label text-red-500">Checkout</span>
+            <p class="text-sm font-bold text-red-700">10:00 前辦理退房</p>
         </div>
         <div class="check-task" onclick="toggleTask(this)">
             <i class="fa-regular fa-circle text-red-400"></i>
             <span class="text-xs font-bold text-red-900 italic">第二次打針</span>
         </div>
         <div class="period-box">
-            <i class="fa-solid fa-sun period-icon text-yellow-400"></i>
-            <span class="period-label">Morning</span>
-            <p class="text-sm font-bold text-gray-700">機場最後掃貨</p>
+            <i class="fa-solid fa-plane-departure period-icon text-gray-400"></i>
+            <span class="period-label text-gray-400">Morning</span>
+            <p class="text-sm font-bold text-gray-700">機場最後掃貨 🛍️</p>
             <div class="med-pill-container">
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益x3 / 得x1 / 快x1</span></div>
             </div>
         </div>
-    </div>
-
-    <div class="mt-8 p-5 bg-[#F9F6F4] rounded-3xl border border-[#F1EAE0]">
-        <p class="text-xs font-bold text-[#8D6E63] mb-2 tracking-widest">STAY INFO</p>
-        <p class="text-sm font-bold text-[#5D4037]">住一新今宮 1 號店</p>
-        <p class="text-[11px] text-gray-500 mt-1">Check-in: 3/26 16:00後</p>
-        <p class="text-[11px] text-gray-500">Check-out: 3/31 10:00前</p>
     </div>
 
     <script>
@@ -180,7 +184,6 @@
                 icon.className = element.querySelector('.fa-star') ? 'fa-solid fa-star' : 'fa-regular fa-circle';
             }
         }
-        
         function toggleTask(element) {
             element.classList.toggle('done');
             const icon = element.querySelector('i');
