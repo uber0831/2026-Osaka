@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 The Journey of Hope</title>
+    <title>2026 好孕關西行</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -17,172 +17,17 @@
         .tag-food { background: #FFF3E0; color: #E65100; }
         .tag-medical { background: #FFEBEE; color: #D32F2F; }
         .price-text { font-family: monospace; color: #666; font-size: 12px; font-weight: bold; }
-        .check-list { border-top: 1px solid #F5F5F5; padding-top: 10px; margin-top: 10px; }
+        /* 勾選框專用樣式 */
+        .check-task { cursor: pointer; transition: all 0.3s; padding: 10px; border-radius: 12px; }
+        .check-task.completed { background-color: #F0FDF4; opacity: 0.6; }
+        .check-task.completed p { text-decoration: line-through; color: #9CA3AF; }
+        .check-task i.fa-square { color: #D1D5DB; }
+        .check-task i.fa-square-check { color: #22C55E; }
     </style>
 </head>
 <body class="p-5 pb-20">
 
     <header class="mb-6">
         <h1 class="text-2xl font-bold text-gray-800">2026 大阪行程表</h1>
-        <p class="text-xs text-gray-400 mt-1">手寫筆記數位化 • 隨時查閱</p>
+        <p class="text-xs text-gray-400 mt-1">Ready for Good Luck ✨</p>
     </header>
-
-    <div class="day-header">3/26 (四) 出發與抵達</div>
-    <div class="info-card">
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-plane"></i></div>
-            <div>
-                <p class="font-bold">泰國獅航 SL396</p>
-                <p class="text-xs text-gray-500 italic">09:00 TPE → 12:30 KIX (T1)</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-train"></i></div>
-            <div>
-                <span class="tag tag-transport">南海電鐵</span>
-                <p>搭乘急行或特急至市區</p>
-                <p class="price-text">大人 ¥970 / 特急 ¥1,490</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
-            <div>
-                <span class="tag tag-transport">民宿</span>
-                <p class="font-bold">住一新今宫 1 號店</p>
-                <p class="text-xs text-gray-500">大阪市浪速區惠美須西 3-14-13</p>
-                <p class="text-xs text-blue-600 mt-1">※ 新今宮站東出口/動物園前站 5 號出口</p>
-            </div>
-        </div>
-        <div class="check-list">
-            <p class="text-xs font-bold text-gray-400 mb-2">晚間採買清單：</p>
-            <div class="flex flex-wrap gap-3">
-                <span class="text-xs"><i class="fa-regular fa-square"></i> Life 超市</span>
-                <span class="text-xs"><i class="fa-regular fa-square"></i> 唐吉訶德</span>
-                <span class="text-xs"><i class="fa-regular fa-square"></i> Lawson/7-11</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="day-header">3/27 (五) 梅田約會</div>
-    <div class="info-card">
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-utensils"></i></div>
-            <div>
-                <span class="tag tag-food">已預約</span>
-                <p class="font-bold text-lg">敘敘苑午餐</p>
-                <p class="text-sm">梅田區百貨分店（中午時段）</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-bag-shopping"></i></div>
-            <div>
-                <p>下午：梅田百貨區、商店街逛街</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-user-group"></i></div>
-            <div>
-                <p class="font-bold">晚間與友人晚餐</p>
-                <p class="text-xs text-gray-500">地點：梅田區</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="day-header">3/28 (六) 放鬆日</div>
-    <div class="info-card border-l-4 border-red-400">
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-syringe text-red-500"></i></div>
-            <div>
-                <span class="tag tag-medical">重要任務</span>
-                <p class="font-bold">第一次打針</p>
-                <p class="text-sm text-gray-600 mt-1">目前無特定行程，建議充分休息。</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="day-header">3/29 (日) 門真購物</div>
-    <div class="info-card">
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-cart-shopping"></i></div>
-            <div>
-                <p class="font-bold text-base">門真好市多 (Costco)</p>
-                <p class="text-xs text-gray-500">記得帶台灣會員卡</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-bag-shopping"></i></div>
-            <div>
-                <p class="font-bold">三井 Outlet / Lalaport</p>
-                <p class="text-sm">必逛：coca, Loft, Muji, Montbell</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-bowl-hot"></i></div>
-            <div>
-                <span class="tag tag-food">推薦餐點</span>
-                <p class="font-bold">一蘭拉麵</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="day-header" style="background: #E65100;">3/30 (一) 植入重要日</div>
-    <div class="info-card bg-orange-50 border-orange-100">
-        <div class="detail-row">
-            <div class="icon-box text-orange-700"><i class="fa-solid fa-shrine"></i></div>
-            <div>
-                <p class="font-bold">早上：住吉大社祈福</p>
-                <p class="text-xs italic text-orange-800">搭乘阪堺路面電車至「住吉鳥居前」</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box text-blue-700"><i class="fa-solid fa-hospital"></i></div>
-            <div>
-                <p class="font-bold text-blue-800">14:00 診所植入任務</p>
-                <p class="text-xs text-blue-600 italic">加油！一切順利 ✨</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box text-yellow-700"><i class="fa-solid fa-burger"></i></div>
-            <div>
-                <span class="tag" style="background: #FFF9C4; color: #F57F17;">備孕傳統</span>
-                <p class="font-bold">植入完吃「麥當勞大薯」</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="day-header">3/31 (二) 打針與返程</div>
-    <div class="info-card">
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-syringe text-red-500"></i></div>
-            <div>
-                <span class="tag tag-medical">早上任務</span>
-                <p class="font-bold text-red-600">完成第二次打針</p>
-            </div>
-        </div>
-        <div class="detail-row">
-            <div class="icon-box"><i class="fa-solid fa-plane-departure"></i></div>
-            <div>
-                <p class="font-bold text-blue-800 italic">星宇航空 JX823</p>
-                <p class="text-sm">15:10 KIX → 17:05 TPE</p>
-                <p class="text-xs font-bold text-red-500 mt-2">※ 13:10 前須抵達機場櫃檯</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // 點擊清單勾選功能
-        document.querySelectorAll('.check-list span').forEach(item => {
-            item.onclick = function() {
-                let icon = this.querySelector('i');
-                if (icon.classList.contains('fa-regular')) {
-                    icon.className = 'fa-solid fa-square-check text-green-500';
-                    this.classList.add('line-through', 'text-gray-300');
-                } else {
-                    icon.className = 'fa-regular fa-square';
-                    this.classList.remove('line-through', 'text-gray-300');
-                }
-            };
-        });
-    </script>
-</body>
-</html>
