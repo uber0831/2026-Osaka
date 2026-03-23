@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 好孕關西行</title>
+    <title>2026 The Journey of Hope</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -31,3 +31,113 @@
         <h1 class="text-2xl font-bold text-gray-800">2026 大阪行程表</h1>
         <p class="text-xs text-gray-400 mt-1">Ready for Good Luck ✨</p>
     </header>
+
+    <div class="day-header">3/26 (四) 出發與抵達</div>
+    <div class="info-card">
+        <div class="detail-row">
+            <div class="icon-box"><i class="fa-solid fa-plane"></i></div>
+            <div><p class="font-bold">泰國獅航 SL396</p><p class="text-xs text-gray-500 italic">09:00 TPE → 12:30 KIX (T1)</p></div>
+        </div>
+        <div class="detail-row">
+            <div class="icon-box"><i class="fa-solid fa-train"></i></div>
+            <div><span class="tag tag-transport">南海電鐵</span><p>搭乘急行或特急至市區</p>
+        </div>
+        <div class="detail-row">
+            <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+                <span class="tag tag-transport">民宿</span><p class="font-bold">住一新今宫 1 號店</p>
+                <p class="text-xs text-gray-500">大阪市浪速區惠美須西 3-14-13</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="day-header">3/27 (五) 梅田約會</div>
+    <div class="info-card">
+        <div class="detail-row">
+            <div class="icon-box"><i class="fa-solid fa-utensils"></i></div>
+            <div><span class="tag tag-food">已預約</span><p class="font-bold text-lg">敘敘苑午餐</p></div>
+        </div>
+        <div class="detail-row">
+            <div class="icon-box"><i class="fa-solid fa-user-group"></i></div>
+            <div><p class="font-bold">晚間與友人晚餐</p><p class="text-xs text-gray-500">地點：梅田區</p></div>
+        </div>
+    </div>
+
+    <div class="day-header">3/28 (六) 放鬆日</div>
+    <div class="info-card border-l-4 border-red-400">
+        <div class="check-task flex items-center gap-3" onclick="toggleTask(this)">
+            <i class="fa-regular fa-square text-2xl"></i>
+            <div>
+                <span class="tag tag-medical">重要任務</span>
+                <p class="font-bold text-lg">第一次打針</p>
+                <p class="text-xs text-gray-400">點擊框框標記完成</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="day-header">3/29 (日) 門真購物</div>
+    <div class="info-card">
+        <div class="detail-row">
+            <div class="icon-box"><i class="fa-solid fa-cart-shopping"></i></div>
+            <div><p class="font-bold">門真好市多 (Costco)</p></div>
+        </div>
+        <div class="detail-row">
+            <div class="icon-box"><i class="fa-solid fa-bag-shopping"></i></div>
+            <div><p class="font-bold">三井 Outlet / Lalaport</p><p class="text-sm">必逛：coca, Loft, Muji, Montbell</p></div>
+        </div>
+        <div class="detail-row">
+            <div class="icon-box"><i class="fa-solid fa-bowl-hot"></i></div>
+            <div><span class="tag tag-food">必吃</span><p class="font-bold">一蘭拉麵</p></div>
+        </div>
+    </div>
+
+    <div class="day-header" style="background: #E65100;">3/30 (一) 植入重要日</div>
+    <div class="info-card bg-orange-50 border-orange-100">
+        <div class="detail-row">
+            <div class="icon-box text-orange-700"><i class="fa-solid fa-shrine"></i></div>
+            <div><p class="font-bold">早上：住吉大社祈福</p></div>
+        </div>
+        <div class="detail-row">
+            <div class="icon-box text-blue-700"><i class="fa-solid fa-hospital"></i></div>
+            <div><p class="font-bold text-blue-800 text-lg">14:00 診所植入任務 ✨</p></div>
+        </div>
+        <div class="detail-row">
+            <div class="icon-box text-yellow-700"><i class="fa-solid fa-burger"></i></div>
+            <div><span class="tag" style="background: #FFF9C4; color: #F57F17;">備孕傳統</span><p class="font-bold">植入完吃「麥當勞大薯」🍟</p></div>
+        </div>
+    </div>
+
+    <div class="day-header">3/31 (二) 返程</div>
+    <div class="info-card border-l-4 border-red-400">
+        <div class="check-task flex items-center gap-3 mb-4" onclick="toggleTask(this)">
+            <i class="fa-regular fa-square text-2xl"></i>
+            <div>
+                <span class="tag tag-medical">早上任務</span>
+                <p class="font-bold text-lg text-red-600">完成第二次打針</p>
+                <p class="text-xs text-gray-400">點擊框框標記完成</p>
+            </div>
+        </div>
+        <div class="detail-row mt-4">
+            <div class="icon-box"><i class="fa-solid fa-plane-departure"></i></div>
+            <div>
+                <p class="font-bold text-blue-800 italic text-lg">星宇航空 JX823</p>
+                <p class="text-sm">15:10 KIX → 17:05 TPE</p>
+                <p class="text-xs font-bold text-red-500 mt-2">※ 13:10 前須抵達機場</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTask(element) {
+            const icon = element.querySelector('i');
+            element.classList.toggle('completed');
+            
+            if (element.classList.contains('completed')) {
+                icon.className = 'fa-solid fa-square-check text-2xl';
+            } else {
+                icon.className = 'fa-regular fa-square text-2xl';
+            }
+        }
+    </script>
+</body>
+</html>
