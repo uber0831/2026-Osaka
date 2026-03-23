@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Osaka 2026</title>
     
-    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAYAAADnRuK7AAAACXBIWXMAAAsTAAALEwEAmpwYAAADvklEQVR4nO3dy27bMBBA0ZQsO///X9ekSAt0002LzAgD7pyLpC6KByAInmS93+93AL96vV6vAFonEAsEAnFAIBYIBOKAQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYoFAIA4IxAKBQBwQiAUCgTggEAcEYvEP4A+Y700m1q7G2AAAAABJRU5ErkJggg==">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/uR2N8Z0.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="大阪行程">
@@ -23,15 +23,22 @@
         .period-icon { position: absolute; left: -14px; top: 0; background: white; padding: 4px; font-size: 18px; }
         .period-label { font-size: 13px; font-weight: 900; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
         .med-pill-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-        .med-pill { background: #FFF5F5; border: 1.5px solid #FEE2E2; padding: 8px 15px; border-radius: 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        
+        /* 💊 藥品文字：縮小至 13px */
+        .med-pill { background: #FFF5F5; border: 1.5px solid #FEE2E2; padding: 6px 12px; border-radius: 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .med-pill.done { background: #F3F4F6; border-color: #E5E7EB; opacity: 0.5; }
         .med-pill.done span { text-decoration: line-through; color: #9CA3AF; }
-        .med-pill i { font-size: 16px; color: #F87171; }
-        .med-pill span { font-size: 17px; font-weight: 800; color: #702424; }
+        .med-pill i { font-size: 14px; color: #F87171; }
+        .med-pill span { font-size: 13px; font-weight: 800; color: #702424; }
+
         .check-task { display: flex; align-items: center; gap: 12px; background: #FEF2F2; border: 2px solid #FEE2E2; padding: 12px 20px; border-radius: 16px; cursor: pointer; margin-bottom: 20px; }
         .check-task span { font-size: 18px; font-weight: 900; color: #B91C1C; }
-        .event-text { font-size: 18px; font-weight: 900; color: #1F2937; margin-top: 4px; }
-        .meal-info { margin-top: 12px; padding-top: 12px; border-top: 1.5px solid #F3F4F6; font-size: 15px; display: flex; flex-direction: column; gap: 6px; }
+
+        /* 📍 行程文字：加大至 22px 純黑 */
+        .event-text { font-size: 22px; font-weight: 900; color: #000000 !important; margin-top: 4px; }
+
+        /* 🍱 三餐資訊：加大至 17px 並加粗 */
+        .meal-info { margin-top: 12px; padding-top: 12px; border-top: 1.5px solid #F3F4F6; font-size: 17px; font-weight: 900; display: flex; flex-direction: column; gap: 6px; }
         .meal-item b { color: #5D4037; font-weight: 900; }
     </style>
 </head>
@@ -53,7 +60,7 @@
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
                 <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
             </div>
-            <p class="event-text">09:00 桃園機場 - 12:30 關西機場 (獅航SL396)</p>
+            <p class="event-text">09:00 桃園機場 - 12:30 關西機場 (SL396)</p>
         </div>
         <div class="period-box">
             <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
