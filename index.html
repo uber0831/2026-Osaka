@@ -8,19 +8,20 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         body { font-family: 'PingFang TC', sans-serif; background: #FDFCFB; color: #444; }
-        .day-title { background: #8D6E63; color: white; padding: 8px 16px; border-radius: 10px; font-weight: bold; font-size: 14px; margin-bottom: 12px; display: inline-block; }
-        .day-card { background: white; border-radius: 24px; padding: 20px; box-shadow: 0 4px 15px rgba(141, 110, 99, 0.05); border: 1px solid #F1EAE0; margin-bottom: 24px; }
+        .day-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+        .day-title { background: #8D6E63; color: white; padding: 6px 14px; border-radius: 10px; font-weight: bold; font-size: 13px; shadow: 0 2px 5px rgba(0,0,0,0.1); }
         
-        /* 時段區塊樣式 */
+        /* 天氣標籤樣式 */
+        .weather-tag { background: white; border: 1px solid #E5E7EB; padding: 5px 10px; border-radius: 10px; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .temp-text { font-size: 12px; font-weight: 800; color: #4B5563; }
+        .rain-text { font-size: 11px; font-weight: 600; color: #3B82F6; }
+
+        .day-card { background: white; border-radius: 24px; padding: 20px; box-shadow: 0 4px 15px rgba(141, 110, 99, 0.05); border: 1px solid #F1EAE0; margin-bottom: 24px; }
         .period-box { position: relative; padding-left: 28px; margin-bottom: 18px; border-left: 2px dashed #E5E7EB; margin-left: 8px; }
         .period-icon { position: absolute; left: -11px; top: 0; background: white; padding: 2px; font-size: 14px; }
-        .period-label { font-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 block; }
-        
-        /* 美食欄位樣式 */
+        .period-label { font-size: 10px; font-weight: bold; text-gray-400 uppercase tracking-widest mb-1 block; color: #9CA3AF; }
         .meal-section { background: #F9F6F4; border-radius: 16px; padding: 12px 16px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
         .meal-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #6D4C41; }
-        
-        /* 精緻勾選框 */
         .check-pill { display: flex; align-items: center; gap: 10px; background: #FFF5F5; border: 1px solid #FEE2E2; padding: 10px 14px; border-radius: 14px; cursor: pointer; transition: all 0.2s; }
         .check-pill.done { background: #F0FDF4; border-color: #DCF6E3; opacity: 0.6; }
         .check-pill.done span { text-decoration: line-through; color: #9CA3AF; }
@@ -30,126 +31,103 @@
 
     <header class="mb-8">
         <h1 class="text-2xl font-bold text-[#5D4037]">大阪行程總覽</h1>
-        <p class="text-xs text-gray-400 mt-1 italic italic">2026.03.26 - 03.31</p>
+        <p class="text-xs text-gray-400 mt-1 italic">2026.03.26 - 03.31 • Weather Updated</p>
     </header>
 
-    <div class="day-title text-sm">3/26 (四) 抵達日</div>
+    <div class="day-row">
+        <div class="day-title">3/26 (四) 抵達日</div>
+        <div class="weather-tag">
+            <i class="fa-solid fa-sun text-yellow-500 text-xs"></i>
+            <span class="temp-text">16° / 8°</span>
+            <span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 10%</span>
+        </div>
+    </div>
     <div class="day-card">
-        <div class="period-box">
-            <i class="fa-solid fa-plane-arrival period-icon text-blue-400"></i>
-            <span class="period-label">Morning</span>
-            <p class="text-sm font-bold">09:00 桃園飛往大阪 (SL396)</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-train period-icon text-orange-400"></i>
-            <span class="period-label">Afternoon</span>
-            <p class="text-sm font-bold">12:30 抵達 KIX / 南海電鐵至市區</p>
-            <p class="text-[11px] text-gray-500 mt-1">Check-in：住一新今宫 1 號店</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <p class="text-sm font-bold">超市/藥妝採買</p>
-            <p class="text-[11px] text-gray-500 mt-1">阿倍野 Q's Mall / Life 超市 / 唐吉訶德</p>
-        </div>
+        <div class="period-box"><i class="fa-solid fa-plane-arrival period-icon text-blue-400"></i><span class="period-label">Morning</span><p class="text-sm font-bold">09:00 桃園飛往大阪 (SL396)</p></div>
+        <div class="period-box"><i class="fa-solid fa-moon period-icon text-indigo-400"></i><span class="period-label">Evening</span><p class="text-sm font-bold">超市/藥妝採買 (Life/唐吉訶德)</p></div>
         <div class="meal-section">
             <div class="meal-item"><i class="fa-solid fa-sun text-yellow-500"></i> 早餐：飛機餐</div>
-            <div class="meal-item"><i class="fa-solid fa-utensils text-orange-500"></i> 午餐：南海電鐵簡易食</div>
             <div class="meal-item"><i class="fa-solid fa-moon text-indigo-500"></i> 晚餐：一蘭拉麵 / 超商巡禮</div>
         </div>
     </div>
 
-    <div class="day-title text-sm">3/27 (五) 梅田行程</div>
+    <div class="day-row">
+        <div class="day-title">3/27 (五) 梅田行程</div>
+        <div class="weather-tag">
+            <i class="fa-solid fa-cloud-sun text-gray-400 text-xs"></i>
+            <span class="temp-text">17° / 9°</span>
+            <span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 20%</span>
+        </div>
+    </div>
     <div class="day-card">
-        <div class="period-box">
-            <i class="fa-solid fa-mug-saucer period-icon text-orange-300"></i>
-            <span class="period-label">Morning</span>
-            <p class="text-sm font-bold">市區輕鬆散步</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-bag-shopping period-icon text-pink-400"></i>
-            <span class="period-label">Afternoon</span>
-            <p class="text-sm font-bold">梅田百貨區逛街 (預約敘敘苑)</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-comments period-icon text-green-400"></i>
-            <span class="period-label">Evening</span>
-            <p class="text-sm font-bold">與友人晚餐聚會</p>
-        </div>
+        <div class="period-box"><i class="fa-solid fa-bag-shopping period-icon text-pink-400"></i><span class="period-label">Afternoon</span><p class="text-sm font-bold">梅田百貨區逛街 (預約敘敘苑)</p></div>
+        <div class="period-box"><i class="fa-solid fa-comments period-icon text-green-400"></i><span class="period-label">Evening</span><p class="text-sm font-bold">與友人晚餐聚會</p></div>
         <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun"></i> 早餐：民宿/超市早餐</div>
             <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：敘敘苑午餐 (已預約)</div>
             <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：友人相約晚餐</div>
         </div>
     </div>
 
-    <div class="day-title text-sm">3/28 (六) 打針休息</div>
+    <div class="day-row">
+        <div class="day-title">3/28 (六) 打針休息</div>
+        <div class="weather-tag">
+            <i class="fa-solid fa-cloud-showers-heavy text-blue-400 text-xs"></i>
+            <span class="temp-text">14° / 10°</span>
+            <span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 70%</span>
+        </div>
+    </div>
     <div class="day-card">
         <div class="check-pill mb-4" onclick="toggleTask(this)">
             <i class="fa-regular fa-circle text-red-400"></i>
             <span class="text-sm font-bold text-red-900">今日任務：完成第一次打針</span>
         </div>
-        <div class="period-box"><i class="fa-solid fa-couch period-icon text-gray-400"></i><span class="period-label">Whole Day</span><p class="text-sm font-bold">充分休息，保持好心情。</p></div>
-        <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun"></i> 早餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：待定</div>
-        </div>
+        <div class="period-box"><i class="fa-solid fa-couch period-icon text-gray-400"></i><span class="period-label">Whole Day</span><p class="text-sm font-bold">休息日：建議待在室內或民宿附近</p></div>
     </div>
 
-    <div class="day-title text-sm">3/29 (日) 門真購物</div>
+    <div class="day-row">
+        <div class="day-title">3/29 (日) 門真購物</div>
+        <div class="weather-tag">
+            <i class="fa-solid fa-cloud text-gray-400 text-xs"></i>
+            <span class="temp-text">15° / 7°</span>
+            <span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 30%</span>
+        </div>
+    </div>
     <div class="day-card">
-        <div class="period-box"><i class="fa-solid fa-car period-icon text-blue-400"></i><span class="period-label">Morning</span><p class="text-sm font-bold">門真 Costco</p></div>
         <div class="period-box"><i class="fa-solid fa-cart-shopping period-icon text-red-400"></i><span class="period-label">Afternoon</span><p class="text-sm font-bold">三井 Outlet / Lalaport 採買</p></div>
-        <div class="period-box"><i class="fa-solid fa-house period-icon text-gray-400"></i><span class="period-label">Evening</span><p class="text-sm font-bold">返程休息</p></div>
         <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun"></i> 早餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：門真區美食/一蘭拉麵</div>
+            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：Costco 熟食區</div>
+            <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：門真區美食</div>
         </div>
     </div>
 
-    <div class="day-title text-sm" style="background: #E65100;">3/30 (一) 植入日</div>
+    <div class="day-row">
+        <div class="day-title" style="background: #E65100;">3/30 (一) 植入重要日</div>
+        <div class="weather-tag">
+            <i class="fa-solid fa-sun text-yellow-500 text-xs"></i>
+            <span class="temp-text">18° / 9°</span>
+            <span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 0%</span>
+        </div>
+    </div>
     <div class="day-card bg-orange-50/50 border-orange-100">
-        <div class="period-box">
-            <i class="fa-solid fa-shrine period-icon text-orange-600"></i>
-            <span class="period-label">Morning</span>
-            <p class="text-sm font-bold text-orange-900">住吉大社</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-hospital period-icon text-blue-600"></i>
-            <span class="period-label">Afternoon</span>
-            <p class="text-sm font-bold text-blue-800">14:00 診所植入 ✨</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-burger period-icon text-yellow-600"></i>
-            <span class="period-label">Evening</span>
-            <p class="text-sm font-bold text-yellow-800">麥當勞大薯 🍟</p>
-        </div>
-        <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun"></i> 早餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：待定</div>
-        </div>
+        <div class="period-box"><i class="fa-solid fa-shrine period-icon text-orange-600"></i><span class="period-label">Morning</span><p class="text-sm font-bold text-orange-900">住吉大社祈福</p></div>
+        <div class="period-box"><i class="fa-solid fa-hospital period-icon text-blue-600"></i><span class="period-label">Afternoon</span><p class="text-sm font-bold text-blue-800">14:00 診所植入任務 ✨</p></div>
+        <div class="period-box"><i class="fa-solid fa-burger period-icon text-yellow-600"></i><span class="period-label">Evening</span><p class="text-sm font-bold text-yellow-800">麥當勞大薯任務 🍟</p></div>
     </div>
 
-    <div class="day-title text-sm">3/31 (二) 返程</div>
+    <div class="day-row">
+        <div class="day-title">3/31 (二) 返程日</div>
+        <div class="weather-tag">
+            <i class="fa-solid fa-cloud-sun text-gray-400 text-xs"></i>
+            <span class="temp-text">19° / 11°</span>
+            <span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 10%</span>
+        </div>
+    </div>
     <div class="day-card">
         <div class="check-pill mb-4" onclick="toggleTask(this)">
             <i class="fa-regular fa-circle text-red-400"></i>
-            <span class="text-sm font-bold text-red-900">重要任務：完成第二次打針</span>
+            <span class="text-sm font-bold text-red-900">今日任務：完成第二次打針</span>
         </div>
-        <div class="period-box">
-            <i class="fa-solid fa-plane-departure period-icon text-blue-500"></i>
-            <span class="period-label">Departure</span>
-            <p class="text-sm font-bold">15:10 星宇航空返台 (JX823)</p>
-            <p class="text-[11px] text-red-500 mt-1 font-bold italic">※ 13:10 前須抵達 KIX 機場櫃檯</p>
-        </div>
-        <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun"></i> 早餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-moon text-blue-300"></i> 晚餐：溫暖的家</div>
-        </div>
+        <div class="period-box"><i class="fa-solid fa-plane-departure period-icon text-blue-500"></i><span class="period-label">Departure</span><p class="text-sm font-bold">15:10 星宇航空返台 (JX823)</p></div>
     </div>
 
     <script>
