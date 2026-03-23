@@ -17,9 +17,20 @@
         .period-box { position: relative; padding-left: 28px; margin-bottom: 18px; border-left: 2px dashed #E5E7EB; margin-left: 8px; }
         .period-icon { position: absolute; left: -11px; top: 0; background: white; padding: 2px; font-size: 14px; }
         .period-label { font-size: 10px; font-weight: bold; color: #9CA3AF; text-transform: uppercase; tracking-widest: 0.1em; margin-bottom: 4px; display: block; }
-        .meal-section { background: #F9F6F4; border-radius: 16px; padding: 12px 16px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+        
+        /* 藥物清單樣式 */
+        .med-section { background: #FFF8F8; border-radius: 16px; padding: 12px; margin: 15px 0; border: 1px solid #FEE2E2; }
+        .med-title { font-size: 11px; font-weight: bold; color: #E53E3E; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+        .med-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .med-item { background: white; border: 1px solid #FEE2E2; padding: 8px; border-radius: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: all 0.2s; }
+        .med-item.done { opacity: 0.5; background: #F9FAFB; border-color: #E5E7EB; }
+        .med-item.done span { text-decoration: line-through; color: #9CA3AF; }
+        .med-text { font-size: 11px; font-weight: 600; color: #702424; line-height: 1.2; }
+        
+        .meal-section { background: #F9F6F4; border-radius: 16px; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
         .meal-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #6D4C41; }
-        .check-pill { display: flex; align-items: center; gap: 10px; background: #FFF5F5; border: 1px solid #FEE2E2; padding: 10px 14px; border-radius: 14px; cursor: pointer; transition: all 0.2s; }
+        
+        .check-pill { display: flex; align-items: center; gap: 10px; background: #FFF5F5; border: 1px solid #FEE2E2; padding: 10px 14px; border-radius: 14px; cursor: pointer; margin-bottom: 15px; }
         .check-pill.done { background: #F0FDF4; border-color: #DCF6E3; opacity: 0.6; }
         .check-pill.done span { text-decoration: line-through; color: #9CA3AF; }
     </style>
@@ -27,105 +38,76 @@
 <body class="p-5 pb-20">
 
     <header class="mb-8 pl-1">
-        <h1 class="text-2xl font-bold text-[#5D4037]">大阪行程</h1>
+        <h1 class="text-2xl font-bold text-[#5D4037]">大阪行程總覽</h1>
         <p class="text-xs text-gray-400 mt-1 italic">The Journey of Hope ✨</p>
     </header>
 
     <div class="day-row">
-        <div class="day-title">3/26 (四) 抵達日</div>
-        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500 text-xs"></i><span class="temp-text">16° / 8°</span><span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 10%</span></div>
+        <div class="day-title">3/26 (四)</div>
+        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500 text-xs"></i><span class="temp-text">16° / 8°</span></div>
     </div>
     <div class="day-card">
-        <div class="period-box"><i class="fa-solid fa-plane-arrival period-icon text-blue-400"></i><span class="period-label">Morning</span><p class="text-sm font-bold text-gray-700">09:00 桃園飛往大阪 (SL396)</p></div>
-        <div class="period-box"><i class="fa-solid fa-train period-icon text-orange-400"></i><span class="period-label">Afternoon</span><p class="text-sm font-bold text-gray-700">12:30 抵達 KIX / 南海電鐵至市區</p></div>
-        <div class="period-box"><i class="fa-solid fa-bag-shopping period-icon text-indigo-400"></i><span class="period-label">Evening</span><p class="text-sm font-bold text-gray-700">超市/藥妝採買 (Life / 唐吉訶德)</p></div>
+        <div class="period-box"><i class="fa-solid fa-plane period-icon text-blue-400"></i><p class="text-sm font-bold">09:00 桃園出發</p></div>
+        
+        <div class="med-section">
+            <div class="med-title"><i class="fa-solid fa-pills"></i> 每日藥物清單</div>
+            <div class="med-grid">
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">早：益斯德 x3</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">早：快孕隆 x1</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">晚：益斯德 x3</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">晚：大白球 x2</span></div>
+            </div>
+        </div>
+
         <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun text-yellow-500"></i> 早餐：機場解決</div>
-            <div class="meal-item"><i class="fa-solid fa-moon text-indigo-500"></i> 晚餐：待定</div>
+            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 晚餐：一蘭拉麵</div>
         </div>
     </div>
 
-    <div class="day-row">
-        <div class="day-title">3/27 (五) 梅田行程</div>
-        <div class="weather-tag"><i class="fa-solid fa-cloud-sun text-gray-400 text-xs"></i><span class="temp-text">17° / 9°</span><span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 20%</span></div>
-    </div>
-    <div class="day-card">
-        <div class="period-box"><i class="fa-solid fa-utensils period-icon text-pink-400"></i><span class="period-label">Afternoon</span><p class="text-sm font-bold text-gray-700">梅田百貨逛街 (預約敘敘苑午餐)</p></div>
-        <div class="period-box"><i class="fa-solid fa-comments period-icon text-green-400"></i><span class="period-label">Evening</span><p class="text-sm font-bold text-gray-700">與友人梅田晚餐聚會</p></div>
-        <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：敘敘苑午餐 (已預約)</div>
-            <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：與朋友聚餐</div>
-        </div>
-    </div>
-
-    <div class="day-row">
-        <div class="day-title">3/28 (六) 植物園與逛街</div>
-        <div class="weather-tag"><i class="fa-solid fa-cloud-showers-heavy text-blue-400 text-xs"></i><span class="temp-text">14° / 10°</span><span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 70%</span></div>
-    </div>
-    <div class="day-card">
-        <div class="check-pill mb-4" onclick="toggleTask(this)">
-            <i class="fa-regular fa-circle text-red-400"></i>
-            <span class="text-sm font-bold text-red-900">重要任務：打針</span>
-        </div>
-        <div class="period-box"><i class="fa-solid fa-leaf period-icon text-green-500"></i><span class="period-label">Morning</span><p class="text-sm font-bold text-gray-700">長居植物園散步 🌸</p></div>
-        <div class="period-box"><i class="fa-solid fa-bag-shopping period-icon text-pink-500"></i><span class="period-label">Afternoon</span><p class="text-sm font-bold text-gray-700">心齋橋逛街買藥妝 💄</p></div>
-        <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun"></i> 早餐：民宿簡餐</div>
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：長居附近美食</div>
-            <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：心齋橋/難波美食</div>
-        </div>
-    </div>
-
-    <div class="day-row">
-        <div class="day-title">3/29 (日) 門真購物</div>
-        <div class="weather-tag"><i class="fa-solid fa-cloud text-gray-400 text-xs"></i><span class="temp-text">15° / 7°</span><span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 30%</span></div>
-    </div>
-    <div class="day-card">
-        <div class="period-box"><i class="fa-solid fa-cart-shopping period-icon text-red-400"></i><span class="period-label">Afternoon</span><p class="text-sm font-bold text-gray-700">門真 Costco & 三井 Outlet</p></div>
-        <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：Costco 熟食</div>
-            <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：Outlet 內美食街</div>
-        </div>
-    </div>
+    <div class="day-row"><div class="day-title">3/27-3/29 行程照舊</div></div>
+    <div class="text-xs text-gray-300 mb-5 pl-5">（實際 HTML 請複製 3/26 結構並更新行程文字即可）</div>
 
     <div class="day-row">
         <div class="day-title" style="background: #E65100;">3/30 (一) 植入日</div>
-        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500 text-xs"></i><span class="temp-text">18° / 9°</span><span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 0%</span></div>
+        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500 text-xs"></i><span class="temp-text">18° / 9°</span></div>
     </div>
     <div class="day-card bg-orange-50/30 border-orange-100">
-        <div class="period-box">
-            <i class="fa-solid fa-shrine period-icon text-orange-600"></i>
-            <span class="period-label">Morning</span>
-            <p class="text-sm font-bold text-orange-900">住吉大社</p>
+        <div class="period-box"><i class="fa-solid fa-hospital period-icon text-blue-600"></i><p class="text-sm font-bold">14:00 診所植入任務 ✨</p>
+            <div class="mt-2 bg-yellow-100 p-2 rounded-lg border border-yellow-200 inline-block"><p class="text-[11px] font-bold text-yellow-700 text-red-600">⚠️ 植入後：快孕隆 x1 & 得胎龍開始</p></div>
         </div>
-        <div class="period-box">
-            <i class="fa-solid fa-hospital period-icon text-blue-600"></i>
-            <span class="period-label">Afternoon</span>
-            <p class="text-sm font-bold text-blue-800 text-base">14:00 診所植入 ✨</p>
-            <div class="mt-2 bg-yellow-100/50 p-2 rounded-lg border border-yellow-200 inline-block">
-                <p class="text-[11px] font-bold text-yellow-700">🍟 植入完成後：吃麥當勞大薯</p>
+        
+        <div class="med-section" style="background: #FFF5F5; border-color: #FEB2B2;">
+            <div class="med-title"><i class="fa-solid fa-capsules"></i> 植入日精密藥物</div>
+            <div class="med-grid">
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">早：益斯德 x3</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">早：得胎龍 x1</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-circle-check text-red-500"></i><span class="med-text text-red-600">後：快孕隆 x1</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">中：得胎龍 x1</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">晚：益斯德 x3</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">晚：得胎龍 x1</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">晚：大白球 x2</span></div>
             </div>
         </div>
+
         <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun"></i> 早餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：待定</div>
-            <div class="meal-item"><i class="fa-solid fa-moon"></i> 晚餐：待定 (視體力決定)</div>
+            <div class="meal-item"><i class="fa-solid fa-burger text-yellow-600"></i> 點心：麥當勞大薯 🍟</div>
         </div>
     </div>
 
     <div class="day-row">
         <div class="day-title">3/31 (二) 返程日</div>
-        <div class="weather-tag"><i class="fa-solid fa-cloud-sun text-gray-400 text-xs"></i><span class="temp-text">19° / 11°</span><span class="rain-text"><i class="fa-solid fa-umbrella text-[10px]"></i> 10%</span></div>
+        <div class="weather-tag"><i class="fa-solid fa-cloud-sun text-gray-400 text-xs"></i><span class="temp-text">19° / 11°</span></div>
     </div>
     <div class="day-card">
-        <div class="check-pill mb-4" onclick="toggleTask(this)">
-            <i class="fa-regular fa-circle text-red-400"></i>
-            <span class="text-sm font-bold text-red-900">重要任務：打針</span>
-        </div>
-        <div class="period-box"><i class="fa-solid fa-plane-departure period-icon text-blue-500"></i><span class="period-label">Departure</span><p class="text-sm font-bold text-gray-700">15:10 星宇航空返台 (JX823)</p></div>
-        <div class="meal-section">
-            <div class="meal-item"><i class="fa-solid fa-sun"></i> 早餐：最後掃貨/超商</div>
-            <div class="meal-item"><i class="fa-solid fa-utensils"></i> 午餐：機場最後巡禮</div>
+        <div class="check-pill" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-400"></i><span class="text-sm font-bold text-red-900">第二次打針任務</span></div>
+        
+        <div class="med-section">
+            <div class="med-title"><i class="fa-solid fa-pills"></i> 每日藥物清單</div>
+            <div class="med-grid">
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">早：益x3 / 得x1 / 快x1</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">中：得胎龍 x1</span></div>
+                <div class="med-item" onclick="toggleMed(this)"><i class="fa-regular fa-square text-red-300"></i><span class="med-text">晚：益x3 / 得x1 / 大x2</span></div>
+            </div>
         </div>
     </div>
 
@@ -133,10 +115,16 @@
         function toggleTask(element) {
             const icon = element.querySelector('i');
             element.classList.toggle('done');
+            icon.className = element.classList.contains('done') ? 'fa-solid fa-circle-check text-green-500' : 'fa-regular fa-circle text-red-400';
+        }
+
+        function toggleMed(element) {
+            const icon = element.querySelector('i');
+            element.classList.toggle('done');
             if (element.classList.contains('done')) {
-                icon.className = 'fa-solid fa-circle-check text-green-500';
+                icon.className = 'fa-solid fa-square-check text-green-500';
             } else {
-                icon.className = 'fa-regular fa-circle text-red-400';
+                icon.className = 'fa-regular fa-square text-red-300';
             }
         }
     </script>
