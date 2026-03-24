@@ -1,7 +1,7 @@
 {
   "name": "Osaka 2026",
   "short_name": "Osaka",
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#FDFCFB",
   "theme_color": "#F97316",
