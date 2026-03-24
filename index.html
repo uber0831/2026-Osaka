@@ -24,7 +24,7 @@
         .period-label { font-size: 13px; font-weight: 900; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
         .med-pill-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
         
-        /* 💊 藥品文字：縮小至 13px */
+        /* 💊 藥品文字：13px */
         .med-pill { background: #FFF5F5; border: 1.5px solid #FEE2E2; padding: 6px 12px; border-radius: 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .med-pill.done { background: #F3F4F6; border-color: #E5E7EB; opacity: 0.5; }
         .med-pill.done span { text-decoration: line-through; color: #9CA3AF; }
@@ -34,12 +34,15 @@
         .check-task { display: flex; align-items: center; gap: 12px; background: #FEF2F2; border: 2px solid #FEE2E2; padding: 12px 20px; border-radius: 16px; cursor: pointer; margin-bottom: 20px; }
         .check-task span { font-size: 18px; font-weight: 900; color: #B91C1C; }
 
-        /* 📍 行程文字：加大至 22px 純黑 */
+        /* 📍 行程文字：22px 純黑 */
         .event-text { font-size: 22px; font-weight: 900; color: #000000 !important; margin-top: 4px; }
 
-        /* 🍱 三餐資訊：加大至 17px 並加粗 */
+        /* 🍱 三餐資訊：17px 加粗 */
         .meal-info { margin-top: 12px; padding-top: 12px; border-top: 1.5px solid #F3F4F6; font-size: 17px; font-weight: 900; display: flex; flex-direction: column; gap: 6px; }
         .meal-item b { color: #5D4037; font-weight: 900; }
+
+        /* 🧳 提醒小框框樣式 */
+        .note-box { margin-top: 15px; padding: 10px 15px; background: #FAFAFA; border: 1.5px dashed #D1D5DB; border-radius: 12px; display: flex; align-items: center; gap: 8px; color: #6B7280; font-size: 14px; font-weight: 700; }
     </style>
 </head>
 <body class="p-4 pb-20">
@@ -124,15 +127,6 @@
             </div>
             <p class="event-text">門真 Costco & 三井 Outlet 🛍️</p>
         </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">晚上要整理行李 🧳</p>
-        </div>
         <div class="meal-info">
             <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>Outlet | <b>晚餐：</b>待定</div>
         </div>
@@ -163,6 +157,9 @@
         </div>
         <div class="meal-info">
             <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>待定 | <b>晚餐：</b>待定</div>
+        </div>
+        <div class="note-box">
+            <i class="fa-solid fa- suitcase-rolling"></i> 提醒：晚上整理行李 🧳
         </div>
     </div>
 
@@ -201,6 +198,9 @@
         </div>
         <div class="meal-info">
             <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>待定 | <b>晚餐：</b>待定</div>
+        </div>
+        <div class="note-box">
+            <i class="fa-solid fa-suitcase-rolling"></i> 提醒：晚上整理行李 🧳
         </div>
     </div>
 
