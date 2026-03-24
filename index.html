@@ -1,259 +1,878 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Osaka 2026</title>
+
     <link rel="icon" href="icon-1024.png">
     <link rel="apple-touch-icon" href="icon-1024.png">
-    <link rel="manifest" href="manifest.json"> 
+    <link rel="manifest" href="manifest.json">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="大阪行程">
-
     <meta name="theme-color" content="#F97316">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
     <style>
-        body { font-family: 'PingFang TC', sans-serif; background: #FDFCFB; color: #333; line-height: 1.5; }
-        .day-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
-        .day-title { background: #8D6E63; color: white; padding: 8px 20px; border-radius: 12px; font-weight: 900; font-size: 19px; box-shadow: 0 3px 5px rgba(0,0,0,0.1); }
-        .weather-tag { background: white; border: 1px solid #E5E7EB; padding: 6px 12px; border-radius: 12px; display: flex; align-items: center; gap: 6px; }
-        .temp-text { font-size: 15px; font-weight: 800; color: #4B5563; }
-        .day-card { background: white; border-radius: 28px; padding: 20px; box-shadow: 0 6px 20px rgba(141, 110, 99, 0.08); border: 1px solid #F1EAE0; margin-bottom: 24px; }
-        .period-box { position: relative; padding-left: 35px; margin-bottom: 22px; border-left: 2px dashed #D1D5DB; margin-left: 12px; }
-        .period-icon { position: absolute; left: -14px; top: 0; background: white; padding: 4px; font-size: 18px; }
-        .period-label { font-size: 13px; font-weight: 900; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
-        .med-pill-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-        
-        /* 💊 藥品文字：13px */
-        .med-pill { background: #FFF5F5; border: 1.5px solid #FEE2E2; padding: 6px 12px; border-radius: 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; }
-        .med-pill.done { background: #F3F4F6; border-color: #E5E7EB; opacity: 0.5; }
-        .med-pill.done span { text-decoration: line-through; color: #9CA3AF; }
-        .med-pill i { font-size: 14px; color: #F87171; }
-        .med-pill span { font-size: 13px; font-weight: 800; color: #702424; }
+        :root{
+            --bg: #F7F4EF;
+            --card: rgba(255,255,255,0.84);
+            --card-strong: rgba(255,255,255,0.96);
+            --text: #2D2A26;
+            --muted: #6B7280;
+            --brown: #6B4F3B;
+            --accent: #F97316;
+            --accent-soft: #FFF1E8;
+            --line: rgba(255,255,255,0.55);
+            --shadow: 0 14px 35px rgba(66, 39, 14, 0.10);
+            --shadow-strong: 0 18px 40px rgba(66, 39, 14, 0.16);
+        }
 
-        .check-task { display: flex; align-items: center; gap: 12px; background: #FEF2F2; border: 2px solid #FEE2E2; padding: 12px 20px; border-radius: 16px; cursor: pointer; margin-bottom: 20px; }
-        .check-task span { font-size: 18px; font-weight: 900; color: #B91C1C; }
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        /* 📍 行程文字：22px 純黑 */
-        .event-text { font-size: 22px; font-weight: 900; color: #000000 !important; margin-top: 4px; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        /* 🍱 三餐資訊：17px 加粗 */
-        .meal-info { margin-top: 12px; padding-top: 12px; border-top: 1.5px solid #F3F4F6; font-size: 17px; font-weight: 900; display: flex; flex-direction: column; gap: 6px; }
-        .meal-item b { color: #5D4037; font-weight: 900; }
+        body {
+            margin: 0;
+            font-family: "PingFang TC", "SF Pro TC", "Noto Sans TC", sans-serif;
+            color: var(--text);
+            line-height: 1.5;
+            background: var(--bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-        /* 🧳 提醒小框框樣式 */
-        .note-box { margin-top: 15px; padding: 10px 15px; background: #FAFAFA; border: 1.5px dashed #D1D5DB; border-radius: 12px; display: flex; align-items: center; gap: 8px; color: #6B7280; font-size: 14px; font-weight: 700; }
+        /* 背景 */
+        .app-bg {
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(247,244,239,0.92) 48%, rgba(247,244,239,1) 100%),
+                url("icon-1024.png") center/cover no-repeat;
+            z-index: -3;
+        }
+
+        .app-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            backdrop-filter: blur(18px) saturate(1.08);
+            -webkit-backdrop-filter: blur(18px) saturate(1.08);
+            z-index: -2;
+        }
+
+        /* 開場 splash */
+        #splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #fff8f0 0%, #ffe8d2 40%, #f9dccd 100%);
+            transition: opacity .55s ease, visibility .55s ease;
+        }
+
+        #splash.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-bg {
+            position: absolute;
+            inset: -8%;
+            background: url("icon-1024.png") center/cover no-repeat;
+            filter: blur(26px) saturate(1.05) brightness(.95);
+            transform: scale(1.15);
+            opacity: .82;
+        }
+
+        .splash-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.65));
+        }
+
+        .splash-content {
+            position: relative;
+            text-align: center;
+            padding: 24px;
+        }
+
+        .splash-icon {
+            width: 178px;
+            height: 178px;
+            border-radius: 42px;
+            box-shadow: 0 20px 55px rgba(33, 18, 6, 0.24);
+            animation: floatIn .85s ease;
+        }
+
+        .splash-title {
+            margin: 18px 0 6px;
+            font-size: 34px;
+            font-weight: 900;
+            color: #5F3416;
+            letter-spacing: -.02em;
+        }
+
+        .splash-subtitle {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 700;
+            color: #7C5B46;
+        }
+
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(12px) scale(.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* 主內容 */
+        .app-shell {
+            max-width: 860px;
+            margin: 0 auto;
+            padding:
+                calc(env(safe-area-inset-top, 0px) + 18px)
+                16px
+                calc(env(safe-area-inset-bottom, 0px) + 100px);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,238,220,0.96), rgba(255,219,186,0.94) 38%, rgba(255,197,184,0.95) 100%);
+            border: 1px solid rgba(255,255,255,0.68);
+            border-radius: 34px;
+            padding: 24px 22px 22px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            right: -40px;
+            top: -40px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(255,255,255,.65), rgba(255,255,255,0));
+        }
+
+        .hero-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .hero-copy {
+            min-width: 0;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.72);
+            color: #9A3412;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            margin: 12px 0 6px;
+            font-size: 38px;
+            line-height: 1.02;
+            font-weight: 900;
+            color: #6B2F10;
+            letter-spacing: -.03em;
+        }
+
+        .hero-desc {
+            margin: 0;
+            color: #7C4A2D;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .hero-icon {
+            width: 92px;
+            height: 92px;
+            border-radius: 24px;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.16);
+            flex-shrink: 0;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.70);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 22px;
+            padding: 14px 14px 12px;
+        }
+
+        .stat-card .label {
+            display: block;
+            color: #8A6A54;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .stat-card .value {
+            font-size: 19px;
+            font-weight: 900;
+            color: #2B211A;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 900;
+            color: #8C705E;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin: 22px 6px 12px;
+        }
+
+        .day-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 6px 2px 12px;
+            flex-wrap: wrap;
+        }
+
+        .day-title {
+            background: #7B5B45;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 16px;
+            font-weight: 900;
+            font-size: 20px;
+            box-shadow: 0 8px 20px rgba(82, 50, 29, 0.15);
+        }
+
+        .weather-tag {
+            background: rgba(255,255,255,0.82);
+            border: 1px solid rgba(255,255,255,0.65);
+            padding: 8px 14px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        .temp-text {
+            font-size: 15px;
+            font-weight: 900;
+            color: #4B5563;
+        }
+
+        .day-card {
+            background: var(--card);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 32px;
+            padding: 26px 22px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.62);
+            margin-bottom: 28px;
+        }
+
+        .day-card.special {
+            background: linear-gradient(180deg, rgba(255,248,241,.95), rgba(255,243,233,.90));
+            border: 1px solid rgba(255,205,188,.95);
+        }
+
+        .check-task {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #FFF1F2;
+            border: 2px solid #FFE1E6;
+            padding: 14px 18px;
+            border-radius: 18px;
+            cursor: pointer;
+            margin-bottom: 22px;
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+
+        .check-task:active {
+            transform: scale(.99);
+        }
+
+        .check-task.done {
+            opacity: .70;
+            background: #F3F4F6;
+            border-color: #E5E7EB;
+        }
+
+        .check-task span {
+            font-size: 19px;
+            font-weight: 900;
+            color: #B91C1C;
+        }
+
+        .check-task.done span {
+            color: #6B7280;
+            text-decoration: line-through;
+        }
+
+        .period-box {
+            position: relative;
+            padding-left: 38px;
+            margin-bottom: 22px;
+            border-left: 2px dashed #D8DADD;
+            margin-left: 12px;
+        }
+
+        .period-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .period-box.highlight {
+            border-left: 4px solid #60A5FA;
+        }
+
+        .period-icon {
+            position: absolute;
+            left: -15px;
+            top: 1px;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.94);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+        }
+
+        .period-label {
+            font-size: 12px;
+            font-weight: 900;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .med-pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .med-pill {
+            background: #FFF5F5;
+            border: 1.5px solid #FEE2E2;
+            padding: 8px 14px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: transform .15s ease, background .2s ease, border-color .2s ease;
+        }
+
+        .med-pill:active {
+            transform: scale(.98);
+        }
+
+        .med-pill.done {
+            background: #F3F4F6;
+            border-color: #E5E7EB;
+            opacity: 0.6;
+        }
+
+        .med-pill.done span {
+            text-decoration: line-through;
+            color: #9CA3AF;
+        }
+
+        .med-pill i {
+            font-size: 14px;
+            color: #F87171;
+        }
+
+        .med-pill span {
+            font-size: 14px;
+            font-weight: 900;
+            color: #702424;
+        }
+
+        .event-text {
+            font-size: 24px;
+            line-height: 1.32;
+            font-weight: 900;
+            color: #111111 !important;
+            margin-top: 4px;
+            letter-spacing: -.01em;
+        }
+
+        .event-text.emphasis {
+            color: #1D4ED8 !important;
+        }
+
+        .meal-info {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1.5px solid rgba(229,231,235,0.9);
+            font-size: 17px;
+            font-weight: 900;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .meal-item b {
+            color: #5D4037;
+            font-weight: 900;
+        }
+
+        .note-box {
+            margin-top: 16px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.62);
+            border: 1.5px dashed #D1D5DB;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6B7280;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            left: 14px;
+            right: 14px;
+            bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+            background: rgba(255,255,255,0.80);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.65);
+            border-radius: 26px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 11px 8px;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+            z-index: 50;
+        }
+
+        .nav-item {
+            border: none;
+            background: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 900;
+            color: #9CA3AF;
+            min-width: 70px;
+        }
+
+        .nav-item i {
+            font-size: 18px;
+        }
+
+        .nav-item.active {
+            color: #EA580C;
+        }
+
+        .anchor {
+            scroll-margin-top: 18px;
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 22px 18px 20px;
+            }
+
+            .hero-top {
+                align-items: flex-start;
+            }
+
+            .hero-title {
+                font-size: 34px;
+            }
+
+            .hero-icon {
+                width: 84px;
+                height: 84px;
+                border-radius: 22px;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .event-text {
+                font-size: 22px;
+            }
+        }
     </style>
 </head>
-<body class="p-4 pb-20">
+<body>
+    <div class="app-bg"></div>
 
-    <header class="mb-8 pl-1">
-        <h1 class="text-2xl font-black text-[#5D4037]">🌸 Osaka 2026</h1>
-    </header>
-
-    <div class="day-row">
-        <div class="day-title">3/26 (四)</div>
-        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">16°/8°</span></div>
-    </div>
-    <div class="day-card">
-        <div class="period-box">
-            <i class="fa-solid fa-plane period-icon text-blue-400"></i>
-            <span class="period-label">Morning</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
-            </div>
-            <p class="event-text">09:00 桃園機場 - 12:30 關西機場 (SL396)</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">Life超市 / 唐吉購物</p>
-        </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早餐：</b>機場解決 | <b>午餐：</b>待定 | <b>晚餐：</b>待定</div>
+    <div id="splash">
+        <div class="splash-bg"></div>
+        <div class="splash-overlay"></div>
+        <div class="splash-content">
+            <img src="icon-1024.png" alt="Osaka 2026 icon" class="splash-icon">
+            <h1 class="splash-title">Osaka 2026</h1>
+            <p class="splash-subtitle">你的大阪行程 App</p>
         </div>
     </div>
 
-    <div class="day-row">
-        <div class="day-title">3/27 (五)</div>
-        <div class="weather-tag"><i class="fa-solid fa-cloud-sun text-orange-300"></i><span class="temp-text">15°/7°</span></div>
-    </div>
-    <div class="day-card">
-        <div class="period-box">
-            <i class="fa-solid fa-utensils period-icon text-red-400"></i>
-            <span class="period-label">Morning</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
+    <main class="app-shell">
+        <section class="hero anchor" id="top">
+            <div class="hero-top">
+                <div class="hero-copy">
+                    <div class="hero-label">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        Travel Planner
+                    </div>
+                    <h1 class="hero-title">Osaka 2026</h1>
+                    <p class="hero-desc">3/26 - 3/31 · 行程 / 用藥 / 提醒</p>
+                </div>
+                <img src="icon-1024.png" alt="Osaka icon" class="hero-icon">
             </div>
-            <p class="event-text">11:30 梅田敘敘苑 (已預約)</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-bag-shopping period-icon text-pink-400"></i>
-            <span class="period-label">Afternoon</span>
-            <p class="event-text">梅田區逛街 🛍️</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">與朋友聚餐 🥢</p>
-        </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>敘敘苑 | <b>晚餐：</b>待定</div>
-        </div>
-    </div>
 
-    <div class="day-row">
-        <div class="day-title">3/28 (六)</div>
-        <div class="weather-tag"><i class="fa-solid fa-umbrella text-blue-400"></i><span class="temp-text">14°/10°</span></div>
-    </div>
-    <div class="day-card">
-        <div class="check-task" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-500"></i><span>💉 打針</span></div>
-        <div class="period-box">
-            <i class="fa-solid fa-cart-shopping period-icon text-green-500"></i>
-            <span class="period-label">Morning</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <span class="label">旅程天數</span>
+                    <span class="value">6 Days</span>
+                </div>
+                <div class="stat-card">
+                    <span class="label">重要事件</span>
+                    <span class="value">3/30 植入</span>
+                </div>
+                <div class="stat-card">
+                    <span class="label">返程</span>
+                    <span class="value">3/31 回台</span>
+                </div>
             </div>
-            <p class="event-text">門真 Costco & 三井 Outlet 🛍️</p>
-        </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>Outlet | <b>晚餐：</b>待定</div>
-        </div>
-    </div>
+        </section>
 
-    <div class="day-row">
-        <div class="day-title">3/29 (日)</div>
-        <div class="weather-tag"><i class="fa-solid fa-cloud text-gray-400"></i><span class="temp-text">16°/11°</span></div>
-    </div>
-    <div class="day-card">
-        <div class="period-box">
-            <i class="fa-solid fa-sun period-icon text-yellow-400"></i>
-            <span class="period-label">Morning</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
-            </div>
-            <p class="event-text">長居植物園 🌸</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
-            </div>
-            <p class="event-text">心齋橋藥妝 💄</p>
-        </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>待定 | <b>晚餐：</b>待定</div>
-        </div>
-        <div class="note-box">
-            <i class="fa-solid fa-suitcase-rolling"></i> 提醒：晚上整理行李 🧳
-        </div>
-    </div>
+        <div class="section-title" id="schedule">Trip Schedule</div>
 
-    <div class="day-row">
-        <div class="day-title" style="background: #E65100;">3/30 (一) 植入日</div>
-        <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">18°/9°</span></div>
-    </div>
-    <div class="day-card" style="background: #FFF8F1; border: 2px solid #FFCCBC;">
-        <div class="period-box">
-            <i class="fa-solid fa-sun period-icon text-orange-400"></i>
-            <span class="period-label">Morning</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
+        <div class="day-row anchor">
+            <div class="day-title">3/26 (四)</div>
+            <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">16°/8°</span></div>
+        </div>
+        <div class="day-card">
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-plane text-blue-400"></i></div>
+                <span class="period-label">Morning</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
+                </div>
+                <p class="event-text">09:00 桃園機場 - 12:30 關西機場 (SL396)</p>
             </div>
-            <p class="event-text">住吉大社 ⛩️</p>
-        </div>
-        <div class="period-box" style="border-left: 4px solid #3B82F6;">
-            <i class="fa-solid fa-hospital period-icon text-blue-600"></i>
-            <span class="period-label text-blue-700">14:00 植入</span>
-            <div class="med-pill-container">
-                <div class="med-pill" style="border-color: #60A5FA;" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" style="border-color: #F87171;" onclick="toggleMed(this)"><i class="fa-solid fa-star text-red-400"></i><span>快孕隆 x1 (植入後)</span></div>
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-moon text-indigo-400"></i></div>
+                <span class="period-label">Evening</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
+                </div>
+                <p class="event-text">Life超市 / 唐吉購物</p>
             </div>
-            <p class="event-text text-blue-900 font-bold">✨ 植入任務 (結束去吃麥當勞大薯🍟)</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-moon period-icon text-indigo-400"></i>
-            <span class="period-label">Evening</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
+            <div class="meal-info">
+                <div class="meal-item"><b>早餐：</b>機場解決 | <b>午餐：</b>待定 | <b>晚餐：</b>待定</div>
             </div>
-            <p class="event-text">飯店休息</p>
         </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>待定 | <b>晚餐：</b>待定</div>
-        </div>
-        <div class="note-box">
-            <i class="fa-solid fa-suitcase-rolling"></i> 提醒：晚上整理行李 🧳
-        </div>
-    </div>
 
-    <div class="day-row">
-        <div class="day-title">3/31 (二) 返程</div>
-    </div>
-    <div class="day-card">
-        <div class="check-task" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-500"></i><span>💉 打針</span></div>
-        <div class="period-box">
-            <i class="fa-solid fa-plane period-icon text-blue-600"></i>
-            <span class="period-label text-blue-700">12:30前盡量早點到機場買歐咪阿給</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
+        <div class="day-row anchor">
+            <div class="day-title">3/27 (五)</div>
+            <div class="weather-tag"><i class="fa-solid fa-cloud-sun text-orange-300"></i><span class="temp-text">15°/7°</span></div>
+        </div>
+        <div class="day-card">
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-utensils text-red-400"></i></div>
+                <span class="period-label">Morning</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
+                </div>
+                <p class="event-text">11:30 梅田敘敘苑 (已預約)</p>
             </div>
-            <p class="event-text">15:10 關西機場 - 17:05 桃園機場 (星宇JX823)</p>
-        </div>
-        <div class="period-box">
-            <i class="fa-solid fa-house-chimney period-icon text-indigo-400"></i>
-            <span class="period-label">Home</span>
-            <div class="med-pill-container">
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
-                <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-bag-shopping text-pink-400"></i></div>
+                <span class="period-label">Afternoon</span>
+                <p class="event-text">梅田區逛街 🛍️</p>
             </div>
-            <p class="event-text">平安回家 🏠</p>
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-moon text-indigo-400"></i></div>
+                <span class="period-label">Evening</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
+                </div>
+                <p class="event-text">與朋友聚餐 🥢</p>
+            </div>
+            <div class="meal-info">
+                <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>敘敘苑 | <b>晚餐：</b>待定</div>
+            </div>
         </div>
-        <div class="meal-info">
-            <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>機場解決 </div>
+
+        <div class="day-row anchor" id="meds">
+            <div class="day-title">3/28 (六)</div>
+            <div class="weather-tag"><i class="fa-solid fa-umbrella text-blue-400"></i><span class="temp-text">14°/10°</span></div>
         </div>
-    </div>
+        <div class="day-card">
+            <div class="check-task" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-500"></i><span>💉 打針</span></div>
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-cart-shopping text-green-500"></i></div>
+                <span class="period-label">Morning</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
+                </div>
+                <p class="event-text">門真 Costco & 三井 Outlet 🛍️</p>
+            </div>
+            <div class="meal-info">
+                <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>Outlet | <b>晚餐：</b>待定</div>
+            </div>
+        </div>
+
+        <div class="day-row anchor">
+            <div class="day-title">3/29 (日)</div>
+            <div class="weather-tag"><i class="fa-solid fa-cloud text-gray-400"></i><span class="temp-text">16°/11°</span></div>
+        </div>
+        <div class="day-card">
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-sun text-yellow-400"></i></div>
+                <span class="period-label">Morning</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
+                </div>
+                <p class="event-text">長居植物園 🌸</p>
+            </div>
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-moon text-indigo-400"></i></div>
+                <span class="period-label">Evening</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
+                </div>
+                <p class="event-text">心齋橋藥妝 💄</p>
+            </div>
+            <div class="meal-info">
+                <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>待定 | <b>晚餐：</b>待定</div>
+            </div>
+            <div class="note-box">
+                <i class="fa-solid fa-suitcase-rolling"></i> 提醒：晚上整理行李 🧳
+            </div>
+        </div>
+
+        <div class="day-row anchor" id="reminders">
+            <div class="day-title" style="background: #E65100;">3/30 (一) 植入日</div>
+            <div class="weather-tag"><i class="fa-solid fa-sun text-yellow-500"></i><span class="temp-text">18°/9°</span></div>
+        </div>
+        <div class="day-card special">
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-sun text-orange-400"></i></div>
+                <span class="period-label">Morning</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
+                </div>
+                <p class="event-text">住吉大社 ⛩️</p>
+            </div>
+
+            <div class="period-box highlight">
+                <div class="period-icon"><i class="fa-solid fa-hospital text-blue-600"></i></div>
+                <span class="period-label" style="color:#2563EB;">14:00 植入</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" style="border-color: #60A5FA;" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
+                    <div class="med-pill" style="border-color: #F87171;" onclick="toggleMed(this)"><i class="fa-solid fa-star text-red-400"></i><span>快孕隆 x1 (植入後)</span></div>
+                </div>
+                <p class="event-text emphasis">✨ 植入任務 (結束去吃麥當勞大薯🍟)</p>
+            </div>
+
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-moon text-indigo-400"></i></div>
+                <span class="period-label">Evening</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
+                </div>
+                <p class="event-text">飯店休息</p>
+            </div>
+
+            <div class="meal-info">
+                <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>待定 | <b>晚餐：</b>待定</div>
+            </div>
+
+            <div class="note-box">
+                <i class="fa-solid fa-suitcase-rolling"></i> 提醒：晚上整理行李 🧳
+            </div>
+        </div>
+
+        <div class="day-row anchor">
+            <div class="day-title">3/31 (二) 返程</div>
+        </div>
+        <div class="day-card">
+            <div class="check-task" onclick="toggleTask(this)"><i class="fa-regular fa-circle text-red-500"></i><span>💉 打針</span></div>
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-plane text-blue-600"></i></div>
+                <span class="period-label" style="color:#2563EB;">12:30前盡量早點到機場買歐咪阿給</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>快孕隆 x1</span></div>
+                </div>
+                <p class="event-text">15:10 關西機場 - 17:05 桃園機場 (星宇JX823)</p>
+            </div>
+            <div class="period-box">
+                <div class="period-icon"><i class="fa-solid fa-house-chimney text-indigo-400"></i></div>
+                <span class="period-label">Home</span>
+                <div class="med-pill-container">
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>益斯德 x3</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>得胎隆 x1 (飯後)</span></div>
+                    <div class="med-pill" onclick="toggleMed(this)"><i class="fa-regular fa-circle"></i><span>大白球 x2</span></div>
+                </div>
+                <p class="event-text">平安回家 🏠</p>
+            </div>
+            <div class="meal-info">
+                <div class="meal-item"><b>早餐：</b>待定 | <b>午餐：</b>機場解決</div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="scrollToSection('top')">
+            <i class="fa-solid fa-house"></i>
+            <span>首頁</span>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('schedule')">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>行程</span>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('meds')">
+            <i class="fa-solid fa-pills"></i>
+            <span>用藥</span>
+        </button>
+        <button class="nav-item" onclick="scrollToSection('reminders')">
+            <i class="fa-solid fa-list-check"></i>
+            <span>提醒</span>
+        </button>
+    </nav>
 
     <script>
+        const medKey = "osaka2026_med_done";
+        const taskKey = "osaka2026_task_done";
+
+        function saveState() {
+            const medStates = [...document.querySelectorAll('.med-pill')].map(el => el.classList.contains('done'));
+            const taskStates = [...document.querySelectorAll('.check-task')].map(el => el.classList.contains('done'));
+            localStorage.setItem(medKey, JSON.stringify(medStates));
+            localStorage.setItem(taskKey, JSON.stringify(taskStates));
+        }
+
+        function restoreState() {
+            const medStates = JSON.parse(localStorage.getItem(medKey) || "[]");
+            const taskStates = JSON.parse(localStorage.getItem(taskKey) || "[]");
+
+            document.querySelectorAll('.med-pill').forEach((el, index) => {
+                if (medStates[index]) {
+                    el.classList.add('done');
+                    const icon = el.querySelector('i');
+                    if (icon) icon.className = 'fa-solid fa-circle-check text-green-500';
+                }
+            });
+
+            document.querySelectorAll('.check-task').forEach((el, index) => {
+                if (taskStates[index]) {
+                    el.classList.add('done');
+                    const icon = el.querySelector('i');
+                    if (icon) icon.className = 'fa-solid fa-circle-check text-green-500';
+                }
+            });
+        }
+
         function toggleMed(element) {
             element.classList.toggle('done');
             const icon = element.querySelector('i');
+
             if (element.classList.contains('done')) {
                 icon.className = 'fa-solid fa-circle-check text-green-500';
             } else {
-                icon.className = element.querySelector('.fa-star') ? 'fa-solid fa-star text-red-400' : 'fa-regular fa-circle';
+                if (icon.classList.contains('fa-star')) {
+                    icon.className = 'fa-solid fa-star text-red-400';
+                } else {
+                    icon.className = 'fa-regular fa-circle';
+                }
             }
+
+            saveState();
         }
+
         function toggleTask(element) {
             element.classList.toggle('done');
             const icon = element.querySelector('i');
+
             if (element.classList.contains('done')) {
                 icon.className = 'fa-solid fa-circle-check text-green-500';
             } else {
                 icon.className = 'fa-regular fa-circle text-red-500';
             }
+
+            saveState();
         }
+
+        function scrollToSection(id) {
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        window.addEventListener('load', () => {
+            restoreState();
+            setTimeout(() => {
+                document.getElementById('splash').classList.add('hide');
+            }, 1100);
+        });
     </script>
 </body>
 </html>
